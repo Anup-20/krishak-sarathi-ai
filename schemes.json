@@ -1,0 +1,61 @@
+{
+  "_note": "SAMPLE STRUCTURE ONLY. Anup, replace the descriptions, amounts, and steps below with your own verified, up-to-date information — do not publish government scheme details you haven't confirmed. The shape (category, docs_required, steps) is what the frontend expects, so keep that structure when you edit.",
+  "schemes": [
+    {
+      "id": "equipment-subsidy",
+      "category_en": "Agriculture Equipment Subsidy",
+      "category_np": "कृषि औजार अनुदान",
+      "summary_en": "Partial subsidy on approved farm machinery and equipment purchases, applied for through your local Agriculture Knowledge Center or municipality.",
+      "summary_np": "स्वीकृत कृषि औजार तथा उपकरण खरिदमा आंशिक अनुदान, स्थानीय कृषि ज्ञान केन्द्र वा नगरपालिका मार्फत आवेदन गरिने।",
+      "docs_required": [
+        "Citizenship certificate copy / नागरिकताको प्रतिलिपि",
+        "Land ownership certificate (Lalpurja) or lease agreement / जग्गाधनी प्रमाण पत्र वा भाडा सम्झौता",
+        "Recommendation letter from ward office / वडा कार्यालयको सिफारिस पत्र",
+        "Bank account details / बैंक खाता विवरण",
+        "Equipment purchase quotation or invoice / उपकरण खरिद कोटेशन वा बिल"
+      ],
+      "steps_en": [
+        "Visit your ward office and request a farmer recommendation letter.",
+        "Collect a quotation from an approved equipment dealer.",
+        "Submit the application form with documents at your local Agriculture Knowledge Center.",
+        "Attend verification/site visit if requested.",
+        "Receive subsidy disbursement after approval (usually to your bank account)."
+      ],
+      "steps_np": [
+        "वडा कार्यालयबाट किसान सिफारिस पत्र लिनुहोस्।",
+        "स्वीकृत उपकरण विक्रेताबाट कोटेशन लिनुहोस्।",
+        "स्थानीय कृषि ज्ञान केन्द्रमा कागजातसहित निवेदन बुझाउनुहोस्।",
+        "आवश्यक परे स्थलगत निरीक्षणमा सहभागी हुनुहोस्।",
+        "स्वीकृतिपछि अनुदान रकम प्रायः बैंक खातामा प्राप्त हुन्छ।"
+      ]
+    },
+    {
+      "id": "agri-loan",
+      "category_en": "Agriculture Loan (Bank/Cooperative)",
+      "category_np": "कृषि कर्जा (बैंक/सहकारी)",
+      "summary_en": "Concessional-rate loans for farming activities, offered through commercial banks, ADBL, or registered cooperatives.",
+      "summary_np": "कृषि कार्यका लागि सहुलियतपूर्ण ब्याजदरमा कर्जा, वाणिज्य बैंक, ADBL, वा दर्ता भएका सहकारी मार्फत उपलब्ध।",
+      "docs_required": [
+        "Citizenship certificate copy / नागरिकताको प्रतिलिपि",
+        "Land ownership or collateral documents / जग्गाधनी वा धितो कागजात",
+        "Farm/business plan describing intended use of the loan / खेती/व्यवसाय योजना",
+        "Passport-size photos / पासपोर्ट साइजको फोटो",
+        "Existing loan clearance certificate, if any / भए हालसम्मको ऋण चुक्ता प्रमाणपत्र"
+      ],
+      "steps_en": [
+        "Prepare a simple written plan: what you'll grow/raise, expected cost, and expected income.",
+        "Visit the nearest bank branch or cooperative that offers agriculture loans.",
+        "Submit documents and the loan application form.",
+        "Provide collateral or a guarantor as required.",
+        "Loan is disbursed after approval; repayment schedule is agreed at signing."
+      ],
+      "steps_np": [
+        "के उत्पादन गर्ने, अनुमानित लागत र आम्दानी खुलेको सामान्य योजना तयार पार्नुहोस्।",
+        "कृषि कर्जा दिने नजिकको बैंक शाखा वा सहकारीमा जानुहोस्।",
+        "कागजात र कर्जा निवेदन फारम बुझाउनुहोस्।",
+        "आवश्यक अनुसार धितो वा जमानी उपलब्ध गराउनुहोस्।",
+        "स्वीकृतिपछि रकम भुक्तानी हुन्छ; भुक्तानी तालिका सम्झौताको समयमा तय हुन्छ।"
+      ]
+    }
+  ]
+}

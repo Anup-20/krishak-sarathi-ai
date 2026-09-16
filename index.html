@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Krishak Sarathi — AI Farm Assistant</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">🌾 <span>Krishak Sarathi</span></div>
+  <div class="lang-toggle">
+    <button id="lang-en" class="lang-btn active">EN</button>
+    <button id="lang-np" class="lang-btn">नेपाली</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="chat" data-en="AI Advisor" data-np="AI सल्लाहकार">AI Advisor</button>
+  <button class="tab-btn" data-tab="weather" data-en="Weather" data-np="मौसम">Weather</button>
+  <button class="tab-btn" data-tab="mandi" data-en="Mandi Prices" data-np="बजार भाउ">Mandi Prices</button>
+  <button class="tab-btn" data-tab="schemes" data-en="Subsidy &amp; Loans" data-np="अनुदान तथा कर्जा">Subsidy &amp; Loans</button>
+</nav>
+
+<main>
+
+  <!-- CHAT -->
+  <section id="tab-chat" class="tab-panel active">
+    <div id="chat-window" class="chat-window">
+      <div class="msg bot" data-en="Namaste! Ask me about crops, pests, soil, or farming decisions." data-np="नमस्ते! बाली, कीरा, माटो, वा खेती सम्बन्धी जे सुकै सोध्नुहोस्।">
+        Namaste! Ask me about crops, pests, soil, or farming decisions.
+      </div>
+    </div>
+    <form id="chat-form" class="chat-input-row">
+      <button type="button" id="mic-btn" title="Speak">🎤</button>
+      <input type="text" id="chat-input" data-en-placeholder="Type your question..." data-np-placeholder="आफ्नो प्रश्न लेख्नुहोस्..." placeholder="Type your question..." autocomplete="off" />
+      <button type="submit" data-en="Send" data-np="पठाउनुहोस्">Send</button>
+    </form>
+  </section>
+
+  <!-- WEATHER -->
+  <section id="tab-weather" class="tab-panel">
+    <form id="weather-form" class="inline-form">
+      <input type="text" id="weather-place" data-en-placeholder="Enter a place, e.g. Kavrepalanchowk" data-np-placeholder="ठाउँ लेख्नुहोस्, जस्तै काभ्रेपलाञ्चोक" placeholder="Enter a place, e.g. Kavrepalanchowk" />
+      <button type="submit" data-en="Check" data-np="हेर्नुहोस्">Check</button>
+      <button type="button" id="geo-btn" data-en="Use my location" data-np="मेरो स्थान प्रयोग गर्नुहोस्">Use my location</button>
+    </form>
+    <div id="weather-result" class="result-box"></div>
+  </section>
+
+  <!-- MANDI -->
+  <section id="tab-mandi" class="tab-panel">
+    <button id="mandi-refresh" data-en="Refresh today's prices" data-np="आजको भाउ ताजा गर्नुहोस्">Refresh today's prices</button>
+    <div id="mandi-result" class="result-box"></div>
+  </section>
+
+  <!-- SCHEMES -->
+  <section id="tab-schemes" class="tab-panel">
+    <div id="schemes-list" class="result-box"></div>
+    <div id="scheme-detail" class="result-box"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p data-en="Krishak Sarathi · AI-powered farm assistant" data-np="कृषक सारथी · AI संचालित कृषि सहायक">Krishak Sarathi · AI-powered farm assistant</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
