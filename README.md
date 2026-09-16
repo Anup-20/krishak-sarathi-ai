@@ -9,7 +9,7 @@ similar name. Built from scratch to pair with anuppudasaini.com.np.
 - 🤖 **AI Advisor** — bilingual (English/Nepali) chat, powered by the Claude API,
   with voice input (speech-to-text) and voice output (text-to-speech) in supported browsers.
 - 🌦️ **Weather** — current conditions + 5-day forecast for any place, free via Open-Meteo (no API key needed).
-- 🥕 **Mandi Prices** — attempts to read today's wholesale prices from
+- 🥕 **Bazar Prices** — attempts to read today's wholesale prices from
   kalimatimarket.gov.np. Government site layouts change, so this scraper may
   need occasional maintenance (see comments in `backend/routes/mandi.js`).
 - 📋 **Subsidy & Loan Guide** — documentation checklists and step-by-step
