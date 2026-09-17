@@ -3,6 +3,20 @@ const fetch = require('node-fetch');
 const router = express.Router();
 const schemesData = require('../data/schemes.json');
 
+// This route uses Google's Gemini API, which has a genuinely free tier (no
+// credit card, no expiration — see https://aistudio.google.com) rather than
+// Anthropic's Claude API, which requires either a paid trial or billing set
+// up. If you later want to switch to Claude (e.g. once you can add billing),
+// see the commented-out ANTHROPIC VERSION block near the bottom of this file
+// for the original implementation — the SYSTEM_PROMPT and schemes-grounding
+// logic above it works with either provider unchanged.
+const GEMINI_MODEL = 'gemini-3.6-flash'; // free-tier model, see aistudio.google.com
+// Note: Google periodically retires older Flash model names for new API
+// keys (gemini-2.5-flash was retired in favor of this one). If you get a
+// 404 "model is no longer available" error in the future, check
+// https://aistudio.google.com for the current free-tier model name and
+// update the line above — nothing else in this file needs to change.
+
 // Build a compact, model-friendly summary of the curated schemes dataset so the
 // advisor can ground loan/subsidy answers in YOUR verified data instead of
 // guessing. Keeping this compact (not the full JSON) leaves room in context for
@@ -68,48 +82,57 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'A "message" string is required.' });
     }
 
-    if (!process.env.ANTHROPIC_API_KEY) {
+    if (!process.env.GEMINI_API_KEY) {
       return res.status(500).json({
         error:
-          'Server is missing ANTHROPIC_API_KEY. Add it to your .env (see .env.example).',
+          'Server is missing GEMINI_API_KEY. Add it to your .env (see .env.example). Get a free key at https://aistudio.google.com — no credit card required.',
       });
     }
 
     // history: optional array of { role: 'user'|'assistant', content: string }
     // sent from the frontend so the advisor remembers the conversation so far.
-    const messages = Array.isArray(history) ? [...history] : [];
-    messages.push({ role: 'user', content: message });
+    // Gemini uses 'model' instead of 'assistant' for the AI's turns, and
+    // wraps text in a `parts` array, so we translate our stored format here.
+    const priorTurns = Array.isArray(history) ? history : [];
+    const contents = priorTurns
+      .map((turn) => ({
+        role: turn.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: turn.content }],
+      }))
+      .concat([{ role: 'user', parts: [{ text: message }] }]);
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        // Check https://docs.claude.com/en/docs/about-claude/models for the
-        // current recommended model name before you deploy.
-        model: 'claude-sonnet-5',
-        max_tokens: 800,
-        system: SYSTEM_PROMPT,
-        messages,
-      }),
-    });
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': process.env.GEMINI_API_KEY,
+        },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+          contents,
+          generationConfig: { maxOutputTokens: 800 },
+        }),
+      }
+    );
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Anthropic API error:', data);
+      console.error('Gemini API error:', data);
       return res.status(502).json({ error: 'AI service error', detail: data });
     }
 
-    const textBlocks = (data.content || [])
-      .filter((block) => block.type === 'text')
-      .map((block) => block.text)
-      .join('\n');
+    const reply =
+      (data.candidates &&
+        data.candidates[0] &&
+        data.candidates[0].content &&
+        data.candidates[0].content.parts &&
+        data.candidates[0].content.parts.map((p) => p.text).join('\n')) ||
+      '';
 
-    res.json({ reply: textBlocks });
+    res.json({ reply });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Unexpected server error.' });
@@ -117,3 +140,29 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
+
+/* ---------------------------------------------------------------------------
+ * ANTHROPIC VERSION (kept for reference — switch back to this if you later
+ * set up Claude API billing; it needs ANTHROPIC_API_KEY instead of
+ * GEMINI_API_KEY in your .env, and no other file needs to change):
+ *
+ * const response = await fetch('https://api.anthropic.com/v1/messages', {
+ *   method: 'POST',
+ *   headers: {
+ *     'Content-Type': 'application/json',
+ *     'x-api-key': process.env.ANTHROPIC_API_KEY,
+ *     'anthropic-version': '2023-06-01',
+ *   },
+ *   body: JSON.stringify({
+ *     model: 'claude-sonnet-5',
+ *     max_tokens: 800,
+ *     system: SYSTEM_PROMPT,
+ *     messages: [...(history || []), { role: 'user', content: message }],
+ *   }),
+ * });
+ * const data = await response.json();
+ * const textBlocks = (data.content || [])
+ *   .filter((block) => block.type === 'text')
+ *   .map((block) => block.text)
+ *   .join('\n');
+ * -------------------------------------------------------------------------*/
