@@ -10,7 +10,12 @@ const schemesData = require('../data/schemes.json');
 // see the commented-out ANTHROPIC VERSION block near the bottom of this file
 // for the original implementation — the SYSTEM_PROMPT and schemes-grounding
 // logic above it works with either provider unchanged.
-const GEMINI_MODEL = 'gemini-2.5-flash'; // free-tier model, see aistudio.google.com
+const GEMINI_MODEL = 'gemini-3.6-flash'; // free-tier model, see aistudio.google.com
+// Note: Google periodically retires older Flash model names for new API
+// keys (gemini-2.5-flash was retired in favor of this one). If you get a
+// 404 "model is no longer available" error in the future, check
+// https://aistudio.google.com for the current free-tier model name and
+// update the line above — nothing else in this file needs to change.
 
 // Build a compact, model-friendly summary of the curated schemes dataset so the
 // advisor can ground loan/subsidy answers in YOUR verified data instead of
