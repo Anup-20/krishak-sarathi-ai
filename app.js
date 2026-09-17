@@ -15,7 +15,7 @@ function setLang(lang) {
 
   document.querySelectorAll('[data-en]').forEach((el) => {
     const text = lang === 'np' ? el.getAttribute('data-np') : el.getAttribute('data-en');
-    if (text !== null) el.textContent = text;
+    if (text !== null) el.innerHTML = text;
   });
   document.querySelectorAll('[data-en-placeholder]').forEach((el) => {
     const text =
@@ -24,6 +24,11 @@ function setLang(lang) {
         : el.getAttribute('data-en-placeholder');
     if (text !== null) el.placeholder = text;
   });
+
+  // Re-render dynamic content that isn't covered by data-en/data-np attributes
+  if (allSchemes.length) renderSchemesList();
+  if (selectedSchemeId) loadSchemeDetail(selectedSchemeId);
+  renderQuickChips();
 }
 document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
 document.getElementById('lang-np').addEventListener('click', () => setLang('np'));
@@ -35,6 +40,15 @@ document.querySelectorAll('.tab-btn').forEach((btn) => {
     document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+
+    if (btn.dataset.tab === 'loans' && !schemesList.dataset.loaded) {
+      fetchSchemes();
+      schemesList.dataset.loaded = 'true';
+    }
+    if (btn.dataset.tab === 'mandi' && !mandiResult.dataset.loaded) {
+      fetchMandi();
+      mandiResult.dataset.loaded = 'true';
+    }
   });
 });
 
@@ -42,6 +56,7 @@ document.querySelectorAll('.tab-btn').forEach((btn) => {
 const chatWindow = document.getElementById('chat-window');
 const chatForm = document.getElementById('chat-form');
 const chatInput = document.getElementById('chat-input');
+const quickChipsEl = document.getElementById('chat-quick-chips');
 
 function addMessage(text, sender) {
   const div = document.createElement('div');
@@ -58,11 +73,8 @@ function speak(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-chatForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const message = chatInput.value.trim();
+async function sendChat(message) {
   if (!message) return;
-
   addMessage(message, 'user');
   chatInput.value = '';
 
@@ -91,13 +103,38 @@ chatForm.addEventListener('submit', async (e) => {
 
     chatHistory.push({ role: 'user', content: message });
     chatHistory.push({ role: 'assistant', content: data.reply });
-    // Keep history from growing unbounded
     if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
   } catch (err) {
     thinking.remove();
     addMessage('Could not reach the server.', 'bot');
   }
+}
+
+chatForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  sendChat(chatInput.value.trim());
 });
+
+// Quick chips: one tap to ask about a scheme by name, in the current language
+function renderQuickChips() {
+  quickChipsEl.innerHTML = '';
+  if (!allSchemes.length) return;
+  allSchemes.slice(0, 5).forEach((s) => {
+    const label = currentLang === 'np' ? s.category_np : s.category_en;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'quick-chip';
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      const prompt =
+        currentLang === 'np'
+          ? `${label} बारे मलाई बताउनुहोस् — कागजात र प्रक्रिया के हो?`
+          : `Tell me about ${label} — what documents and steps are involved?`;
+      sendChat(prompt);
+    });
+    quickChipsEl.appendChild(btn);
+  });
+}
 
 // ---------- Voice input (Web Speech API — Chrome/Edge support only) ----------
 const micBtn = document.getElementById('mic-btn');
@@ -196,7 +233,7 @@ async function fetchMandi() {
 
     let html = '';
     if (data.stale) {
-      html += `<p style="color:#b5895c;">${data.message || ''}</p>`;
+      html += `<p style="color:#a85c32;">${data.message || ''}</p>`;
     }
     html += '<table class="price-table"><tr><th>Commodity</th><th>Unit</th><th>Min</th><th>Max</th></tr>';
     (data.prices || []).forEach((p) => {
@@ -210,68 +247,283 @@ async function fetchMandi() {
 }
 document.getElementById('mandi-refresh').addEventListener('click', fetchMandi);
 
-// ---------- Schemes / subsidy & loan documentation ----------
+// ---------- Loan & Subsidy Guide ----------
 const schemesList = document.getElementById('schemes-list');
 const schemeDetail = document.getElementById('scheme-detail');
+const schemeSearch = document.getElementById('scheme-search');
+const tagChipsEl = document.getElementById('tag-chips');
+
+let allSchemes = [];
+let activeTag = null;
+let selectedSchemeId = null;
+
+const BOOKMARK_KEY = 'krishak-sarathi-bookmarked-schemes';
+function getBookmarks() {
+  try {
+    return JSON.parse(localStorage.getItem(BOOKMARK_KEY) || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+function toggleBookmark(id) {
+  const marks = getBookmarks();
+  const idx = marks.indexOf(id);
+  if (idx === -1) marks.push(id);
+  else marks.splice(idx, 1);
+  try {
+    localStorage.setItem(BOOKMARK_KEY, JSON.stringify(marks));
+  } catch (e) {
+    /* storage unavailable — bookmarks just won't persist */
+  }
+  renderSchemesList();
+}
 
 async function fetchSchemes() {
   schemesList.textContent = currentLang === 'np' ? 'लोड हुँदैछ...' : 'Loading...';
   try {
     const res = await fetch(`${API_BASE}/api/schemes`);
-    const list = await res.json();
-    schemesList.innerHTML = '';
-    list.forEach((s) => {
-      const card = document.createElement('div');
-      card.className = 'scheme-card';
-      card.innerHTML = `<h4>${currentLang === 'np' ? s.category_np : s.category_en}</h4>
-        <p>${currentLang === 'np' ? s.summary_np : s.summary_en}</p>`;
-      card.addEventListener('click', () => loadSchemeDetail(s.id));
-      schemesList.appendChild(card);
-    });
+    allSchemes = await res.json();
+    renderTagChips();
+    renderSchemesList();
+    renderQuickChips();
   } catch (err) {
     schemesList.textContent = 'Could not reach the server.';
   }
 }
 
+function renderTagChips() {
+  const tagSet = new Set();
+  allSchemes.forEach((s) => (s.tags || []).forEach((t) => tagSet.add(t)));
+  tagChipsEl.innerHTML = '';
+
+  const allBtn = document.createElement('button');
+  allBtn.type = 'button';
+  allBtn.className = 'tag-chip' + (activeTag === null ? ' active' : '');
+  allBtn.textContent = currentLang === 'np' ? 'सबै' : 'All';
+  allBtn.addEventListener('click', () => {
+    activeTag = null;
+    renderTagChips();
+    renderSchemesList();
+  });
+  tagChipsEl.appendChild(allBtn);
+
+  [...tagSet].sort().forEach((tag) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tag-chip' + (activeTag === tag ? ' active' : '');
+    btn.textContent = tag;
+    btn.addEventListener('click', () => {
+      activeTag = activeTag === tag ? null : tag;
+      renderTagChips();
+      renderSchemesList();
+    });
+    tagChipsEl.appendChild(btn);
+  });
+}
+
+function renderSchemesList() {
+  const query = (schemeSearch.value || '').trim().toLowerCase();
+  const bookmarks = getBookmarks();
+
+  const filtered = allSchemes.filter((s) => {
+    const matchesTag = !activeTag || (s.tags || []).includes(activeTag);
+    const matchesQuery =
+      !query ||
+      [s.category_en, s.category_np, s.summary_en, s.summary_np]
+        .filter(Boolean)
+        .some((f) => f.toLowerCase().includes(query));
+    return matchesTag && matchesQuery;
+  });
+
+  schemesList.innerHTML = '';
+
+  if (filtered.length === 0) {
+    const empty = document.createElement('p');
+    empty.style.color = 'var(--ink-soft)';
+    empty.style.fontSize = '0.9rem';
+    empty.textContent =
+      currentLang === 'np' ? 'कुनै योजना फेला परेन।' : 'No schemes match your search.';
+    schemesList.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach((s) => {
+    const card = document.createElement('div');
+    card.className = 'scheme-card' + (s.id === selectedSchemeId ? ' selected' : '');
+
+    const isSaved = bookmarks.includes(s.id);
+    const difficultyLabel =
+      currentLang === 'np'
+        ? { easy: 'सजिलो', medium: 'मध्यम', hard: 'कठिन' }[s.difficulty] || s.difficulty
+        : s.difficulty;
+
+    card.innerHTML = `
+      <button class="bookmark-btn ${isSaved ? 'saved' : ''}" title="Bookmark" aria-label="Bookmark">${isSaved ? '★' : '☆'}</button>
+      <h4>${currentLang === 'np' ? s.category_np : s.category_en}</h4>
+      <p>${currentLang === 'np' ? s.summary_np : s.summary_en}</p>
+      <div class="scheme-meta">
+        ${s.difficulty ? `<span>${difficultyLabel}</span>` : ''}
+        ${(currentLang === 'np' ? s.processing_time_np : s.processing_time_en) ? `<span>${currentLang === 'np' ? s.processing_time_np : s.processing_time_en}</span>` : ''}
+        ${s.last_checked ? `<span>${currentLang === 'np' ? 'पछिल्लो जाँच' : 'checked'}: ${s.last_checked}</span>` : ''}
+      </div>
+    `;
+
+    card.querySelector('.bookmark-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleBookmark(s.id);
+    });
+
+    card.addEventListener('click', () => {
+      selectedSchemeId = s.id;
+      loadSchemeDetail(s.id);
+      renderSchemesList();
+    });
+
+    schemesList.appendChild(card);
+  });
+}
+
 async function loadSchemeDetail(id) {
-  schemeDetail.textContent = currentLang === 'np' ? 'लोड हुँदैछ...' : 'Loading...';
+  schemeDetail.innerHTML =
+    currentLang === 'np' ? 'लोड हुँदैछ...' : 'Loading...';
   const res = await fetch(`${API_BASE}/api/schemes/${id}`);
   const s = await res.json();
+  if (!res.ok) {
+    schemeDetail.textContent = s.error || 'Could not load this scheme.';
+    return;
+  }
 
   const docs = s.docs_required || [];
   const steps = currentLang === 'np' ? s.steps_np : s.steps_en;
+  const isNp = currentLang === 'np';
 
-  let html = `<h3>${currentLang === 'np' ? s.category_np : s.category_en}</h3>`;
-  html += `<h4>${currentLang === 'np' ? 'चाहिने कागजातहरू' : 'Documents required'}</h4><ul>`;
+  let html = `<h3>${isNp ? s.category_np : s.category_en}</h3>`;
+  html += `<div class="verified-line">${
+    isNp ? 'स्रोत' : 'Source'
+  }: ${s.source_url ? `<a href="${s.source_url}" target="_blank" rel="noopener">${s.source_url}</a>` : '—'} · ${
+    isNp ? 'पछिल्लो जाँच' : 'last checked'
+  }: ${s.last_checked || '—'}</div>`;
+
+  const interestNote = isNp ? s.interest_note_np : s.interest_note_en;
+  const collateralNote = isNp ? s.collateral_note_np : s.collateral_note_en;
+  const office = isNp ? s.office_np : s.office_en;
+
+  if (interestNote) html += `<div class="note-box">💰 ${interestNote}</div>`;
+  if (collateralNote) html += `<div class="note-box">🔒 ${collateralNote}</div>`;
+  if (office) html += `<div class="note-box">🏢 ${isNp ? 'कार्यालय' : 'Office'}: ${office}</div>`;
+
+  html += `<h4>${isNp ? 'चाहिने कागजातहरू' : 'Documents required'}</h4><ul>`;
   docs.forEach((d) => (html += `<li>${d}</li>`));
   html += '</ul>';
-  html += `<h4>${currentLang === 'np' ? 'प्रक्रिया' : 'Process'}</h4><ol>`;
+
+  html += `<h4>${isNp ? 'प्रक्रिया' : 'Process'}</h4><ol>`;
   (steps || []).forEach((st) => (html += `<li>${st}</li>`));
   html += '</ol>';
 
+  html += `<div class="detail-actions">
+      <button id="download-checklist">${isNp ? '⬇ चेकलिस्ट डाउनलोड गर्नुहोस्' : '⬇ Download checklist'}</button>
+      <button id="print-checklist">${isNp ? '🖨 प्रिन्ट गर्नुहोस्' : '🖨 Print'}</button>
+      <button id="ask-about-scheme">${isNp ? '💬 यसबारे सोध्नुहोस्' : '💬 Ask about this'}</button>
+    </div>`;
+
   schemeDetail.innerHTML = html;
+
+  document.getElementById('download-checklist').addEventListener('click', () => downloadChecklist(s, isNp));
+  document.getElementById('print-checklist').addEventListener('click', () => printChecklist(s, isNp));
+  document.getElementById('ask-about-scheme').addEventListener('click', () => {
+    document.querySelector('.tab-btn[data-tab="chat"]').click();
+    const label = isNp ? s.category_np : s.category_en;
+    sendChat(
+      isNp
+        ? `${label} बारे मलाई विस्तृत बताउनुहोस्।`
+        : `Tell me more about ${label} and how I should prepare.`
+    );
+  });
 }
 
-// Load schemes once on first visit to that tab
-document.querySelector('[data-tab="schemes"]').addEventListener(
-  'click',
-  () => {
-    if (!schemesList.dataset.loaded) {
-      fetchSchemes();
-      schemesList.dataset.loaded = 'true';
-    }
-  },
-  { once: false }
-);
+function checklistText(s, isNp) {
+  const docs = s.docs_required || [];
+  const steps = isNp ? s.steps_np : s.steps_en;
+  const lines = [];
+  lines.push(isNp ? s.category_np : s.category_en);
+  lines.push('='.repeat(30));
+  lines.push('');
+  lines.push(isNp ? 'चाहिने कागजातहरू:' : 'Documents required:');
+  docs.forEach((d) => lines.push(`[ ] ${d}`));
+  lines.push('');
+  lines.push(isNp ? 'प्रक्रिया:' : 'Process:');
+  (steps || []).forEach((st, i) => lines.push(`${i + 1}. ${st}`));
+  lines.push('');
+  lines.push(`${isNp ? 'स्रोत' : 'Source'}: ${s.source_url || '—'}`);
+  lines.push(`${isNp ? 'पछिल्लो जाँच' : 'Last checked'}: ${s.last_checked || '—'}`);
+  lines.push('');
+  lines.push(
+    isNp
+      ? 'सूचना: भर पर्नुअघि हालको ब्याजदर, अनुदान रकम, र म्याद माथिको कार्यालयसँग पक्का गर्नुहोस्।'
+      : 'Note: confirm current interest rates, subsidy amounts, and deadlines with the office above before relying on them.'
+  );
+  return lines.join('\n');
+}
 
-// Load mandi prices once on first visit
-document.querySelector('[data-tab="mandi"]').addEventListener(
-  'click',
-  () => {
-    if (!mandiResult.dataset.loaded) {
-      fetchMandi();
-      mandiResult.dataset.loaded = 'true';
-    }
-  },
-  { once: false }
-);
+function downloadChecklist(s, isNp) {
+  const text = checklistText(s, isNp);
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${s.id}-checklist.txt`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function printChecklist(s, isNp) {
+  const text = checklistText(s, isNp).replace(/\n/g, '<br/>');
+  const win = window.open('', '_blank');
+  if (!win) return;
+  win.document.write(`<html><head><title>${s.id}</title></head><body style="font-family: sans-serif; padding: 24px; line-height:1.6;">${text}</body></html>`);
+  win.document.close();
+  win.print();
+}
+
+schemeSearch.addEventListener('input', renderSchemesList);
+
+// ---------- Loan (EMI) calculator ----------
+const emiForm = document.getElementById('emi-form');
+const emiResultBox = document.getElementById('emi-result');
+
+function formatNPR(n) {
+  return 'रु. ' + Math.round(n).toLocaleString('en-IN');
+}
+
+emiForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const principal = parseFloat(document.getElementById('emi-principal').value);
+  const annualRate = parseFloat(document.getElementById('emi-rate').value);
+  const months = parseInt(document.getElementById('emi-months').value, 10);
+
+  if (!principal || principal <= 0 || months <= 0 || annualRate < 0) return;
+
+  const monthlyRate = annualRate / 12 / 100;
+  let monthlyPayment;
+  if (monthlyRate === 0) {
+    monthlyPayment = principal / months;
+  } else {
+    monthlyPayment =
+      (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+      (Math.pow(1 + monthlyRate, months) - 1);
+  }
+  const totalRepayment = monthlyPayment * months;
+  const totalInterest = totalRepayment - principal;
+
+  document.getElementById('emi-monthly').textContent = formatNPR(monthlyPayment);
+  document.getElementById('emi-total').textContent = formatNPR(totalRepayment);
+  document.getElementById('emi-interest').textContent = formatNPR(totalInterest);
+  emiResultBox.hidden = false;
+});
+
+// ---------- Initial load ----------
+// Pre-load schemes in the background so quick chips are ready even before
+// the user opens the Loan & Subsidy Guide tab.
+fetchSchemes();

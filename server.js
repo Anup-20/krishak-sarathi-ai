@@ -32,10 +32,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'krishak-sarathi-ai-backend' });
 });
 
-// Serve the frontend as static files (useful when deploying frontend+backend together,
-// e.g. on Render/Railway/a single VPS). If you deploy the frontend separately
-// (Vercel static, GitHub Pages, or embedded in anuppudasaini.com.np), you can
-// remove this block and just keep the /api/* routes.
+// Serve the frontend as static files (useful when deploying frontend+backend
+// together, e.g. on Render/Railway/a single VPS). If you deploy the frontend
+// separately (Vercel static, GitHub Pages, or embedded in
+// anuppudasaini.com.np), you can remove this block and just keep /api/*.
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
