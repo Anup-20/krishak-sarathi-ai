@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Krishak Sarathi — AI Farm &amp; Loan Advisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">कृ</span>
+    <span class="brand-name" data-en="Krishak Sarathi" data-np="कृषक सारथी">Krishak Sarathi</span>
+  </div>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button id="lang-en" class="lang-btn active">EN</button>
+    <button id="lang-np" class="lang-btn">नेपाली</button>
+  </div>
+</header>
+
+<div class="terrace-line" aria-hidden="true"></div>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="chat" data-en="AI Advisor" data-np="AI सल्लाहकार">AI Advisor</button>
+  <button class="tab-btn" data-tab="loans" data-en="Loan &amp; Subsidy Guide" data-np="कर्जा तथा अनुदान मार्गदर्शक">Loan &amp; Subsidy Guide</button>
+  <button class="tab-btn" data-tab="calculator" data-en="Loan Calculator" data-np="कर्जा क्यालकुलेटर">Loan Calculator</button>
+  <button class="tab-btn" data-tab="weather" data-en="Weather" data-np="मौसम">Weather</button>
+  <button class="tab-btn" data-tab="mandi" data-en="Mandi Prices" data-np="बजार भाउ">Mandi Prices</button>
+</nav>
+
+<main>
+
+  <!-- CHAT -->
+  <section id="tab-chat" class="tab-panel active">
+    <p class="section-lede" data-en="Ask about crops, pests, soil — or a specific loan and subsidy scheme. Sarathi grounds loan answers in the verified Loan &amp; Subsidy Guide and always tells you where to confirm current numbers."
+       data-np="बाली, कीरा, माटो — वा कुनै विशेष कर्जा/अनुदान योजनाबारे सोध्नुहोस्। सारथीले कर्जा सम्बन्धी जवाफ प्रमाणित कर्जा तथा अनुदान मार्गदर्शकमा आधारित बनाउँछ र हालको संख्या कहाँ पक्का गर्ने भन्ने सधैं बताउँछ।">
+      Ask about crops, pests, soil — or a specific loan and subsidy scheme. Sarathi grounds loan answers in the verified Loan &amp; Subsidy Guide and always tells you where to confirm current numbers.
+    </p>
+    <div id="chat-window" class="chat-window">
+      <div class="msg bot" data-en="Namaste! Ask me about crops, pests, soil, or a loan/subsidy scheme." data-np="नमस्ते! बाली, कीरा, माटो, वा कुनै कर्जा/अनुदान योजनाबारे सोध्नुहोस्।">
+        Namaste! Ask me about crops, pests, soil, or a loan/subsidy scheme.
+      </div>
+    </div>
+    <div class="quick-chips" id="chat-quick-chips">
+      <!-- populated by app.js from schemes list -->
+    </div>
+    <form id="chat-form" class="chat-input-row">
+      <button type="button" id="mic-btn" title="Speak" aria-label="Voice input">🎤</button>
+      <input type="text" id="chat-input" data-en-placeholder="Type your question..." data-np-placeholder="आफ्नो प्रश्न लेख्नुहोस्..." placeholder="Type your question..." autocomplete="off" />
+      <button type="submit" data-en="Send" data-np="पठाउनुहोस्">Send</button>
+    </form>
+  </section>
+
+  <!-- LOAN & SUBSIDY GUIDE -->
+  <section id="tab-loans" class="tab-panel">
+    <p class="section-lede" data-en="A curated, plain-language guide to agriculture loans and subsidy schemes — documents, steps, and where to confirm the current interest rate or deadline. Sample structure: verify every figure locally before relying on it."
+       data-np="कृषि कर्जा तथा अनुदान योजनाहरूको सरल भाषामा तयार गरिएको मार्गदर्शक — कागजात, प्रक्रिया, र हालको ब्याजदर वा म्याद कहाँ पक्का गर्ने। नमूना संरचना: भर पर्नुअघि हरेक अंक स्थानीय रूपमा पक्का गर्नुहोस्।">
+      A curated, plain-language guide to agriculture loans and subsidy schemes — documents, steps, and where to confirm the current interest rate or deadline. Sample structure: verify every figure locally before relying on it.
+    </p>
+
+    <div class="loan-toolbar">
+      <input type="text" id="scheme-search" class="scheme-search"
+             data-en-placeholder="Search schemes (e.g. dairy, youth, insurance)…"
+             data-np-placeholder="योजना खोज्नुहोस् (जस्तै डेरी, युवा, बीमा)…"
+             placeholder="Search schemes (e.g. dairy, youth, insurance)…" />
+      <div class="tag-chips" id="tag-chips">
+        <!-- populated by app.js -->
+      </div>
+    </div>
+
+    <div class="loan-layout">
+      <div id="schemes-list" class="schemes-list"></div>
+      <div id="scheme-detail" class="scheme-detail">
+        <div class="scheme-detail-empty" data-en="Select a scheme on the left to see required documents, the step-by-step process, and where to confirm current terms."
+             data-np="बायाँबाट कुनै योजना छान्नुहोस् — चाहिने कागजात, चरणबद्ध प्रक्रिया, र हालको सर्त कहाँ पक्का गर्ने भनी हेर्न सकिन्छ।">
+          Select a scheme on the left to see required documents, the step-by-step process, and where to confirm current terms.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOAN CALCULATOR -->
+  <section id="tab-calculator" class="tab-panel">
+    <p class="section-lede" data-en="Estimate your monthly payment for any loan amount, rate, and term. Enter the rate quoted to you by your bank or cooperative — this tool does not assume any specific scheme's rate."
+       data-np="कुनै पनि कर्जा रकम, ब्याजदर, र अवधिको लागि मासिक किस्ता अनुमान गर्नुहोस्। तपाईंलाई बैंक वा सहकारीले दिएको दर प्रयोग गर्नुहोस् — यो उपकरणले कुनै निश्चित योजनाको दर मान्दैन।">
+      Estimate your monthly payment for any loan amount, rate, and term. Enter the rate quoted to you by your bank or cooperative — this tool does not assume any specific scheme's rate.
+    </p>
+
+    <form id="emi-form" class="emi-form">
+      <label>
+        <span data-en="Loan amount (NPR)" data-np="कर्जा रकम (रु.)">Loan amount (NPR)</span>
+        <input type="number" id="emi-principal" min="1000" step="1000" value="200000" required />
+      </label>
+      <label>
+        <span data-en="Annual interest rate (%)" data-np="वार्षिक ब्याजदर (%)">Annual interest rate (%)</span>
+        <input type="number" id="emi-rate" min="0" step="0.1" value="8" required />
+      </label>
+      <label>
+        <span data-en="Loan term (months)" data-np="कर्जा अवधि (महिना)">Loan term (months)</span>
+        <input type="number" id="emi-months" min="1" step="1" value="36" required />
+      </label>
+      <button type="submit" data-en="Calculate" data-np="गणना गर्नुहोस्">Calculate</button>
+    </form>
+
+    <div id="emi-result" class="result-box emi-result" hidden>
+      <div class="emi-headline">
+        <span class="emi-label" data-en="Estimated monthly payment" data-np="अनुमानित मासिक किस्ता">Estimated monthly payment</span>
+        <span class="emi-value" id="emi-monthly">—</span>
+      </div>
+      <div class="emi-breakdown">
+        <div><span data-en="Total repayment" data-np="कुल भुक्तानी">Total repayment</span><strong id="emi-total">—</strong></div>
+        <div><span data-en="Total interest" data-np="कुल ब्याज">Total interest</span><strong id="emi-interest">—</strong></div>
+      </div>
+      <p class="emi-note" data-en="Estimate only, using simple reducing-balance math. Your bank's actual schedule may include fees or a different compounding method."
+         data-np="यो अनुमान मात्र हो, घट्दो मौज्दात गणना प्रयोग गरेर। तपाईंको बैंकको वास्तविक तालिकामा शुल्क वा फरक गणना विधि हुन सक्छ।">
+        Estimate only, using simple reducing-balance math. Your bank's actual schedule may include fees or a different compounding method.
+      </p>
+    </div>
+  </section>
+
+  <!-- WEATHER -->
+  <section id="tab-weather" class="tab-panel">
+    <form id="weather-form" class="inline-form">
+      <input type="text" id="weather-place" data-en-placeholder="Enter a place, e.g. Kavrepalanchowk" data-np-placeholder="ठाउँ लेख्नुहोस्, जस्तै काभ्रेपलाञ्चोक" placeholder="Enter a place, e.g. Kavrepalanchowk" />
+      <button type="submit" data-en="Check" data-np="हेर्नुहोस्">Check</button>
+      <button type="button" id="geo-btn" data-en="Use my location" data-np="मेरो स्थान प्रयोग गर्नुहोस्">Use my location</button>
+    </form>
+    <div id="weather-result" class="result-box"></div>
+  </section>
+
+  <!-- MANDI -->
+  <section id="tab-mandi" class="tab-panel">
+    <button id="mandi-refresh" data-en="Refresh today's prices" data-np="आजको भाउ ताजा गर्नुहोस्">Refresh today's prices</button>
+    <div id="mandi-result" class="result-box"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p data-en="Krishak Sarathi · AI-powered farm &amp; loan advisor · Verify all scheme figures with the office listed before relying on them."
+     data-np="कृषक सारथी · AI संचालित कृषि तथा कर्जा सल्लाहकार · भर पर्नुअघि सूचीबद्ध कार्यालयसँग योजनाका सबै अंक पक्का गर्नुहोस्।">
+    Krishak Sarathi · AI-powered farm &amp; loan advisor · Verify all scheme figures with the office listed before relying on them.
+  </p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
