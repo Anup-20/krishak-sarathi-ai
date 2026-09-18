@@ -2167,6 +2167,21 @@ function formatNPR(value) {
   return `NPR ${formatNumber(number)}`;
 }
 
+function getField(obj, base) {
+  if (!obj) return '';
+
+  const enVal = obj[`${base}_en`];
+  const npVal = obj[`${base}_np`];
+
+  if (enVal !== undefined || npVal !== undefined) {
+    return currentLang === 'np'
+      ? (npVal || enVal || '')
+      : (enVal || npVal || '');
+  }
+
+  return getLocalized(obj[base], '');
+}
+
 function getLocalized(value, fallback = '') {
   if (!value) {
     return fallback;
@@ -3103,12 +3118,8 @@ function getFilteredSchemes() {
     scheme => {
       const searchable =
         [
-          scheme.name,
-          scheme.title,
-          scheme.description,
-          scheme.summary,
-          scheme.provider,
-          scheme.category,
+          getField(scheme, 'category'),
+          getField(scheme, 'summary'),
           ...(Array.isArray(scheme.tags)
             ? scheme.tags
             : [])
@@ -3189,13 +3200,10 @@ function renderSchemes() {
           '';
 
         const title =
-          getLocalized(
-            scheme.name ||
-            scheme.title,
-            currentLang === 'np'
-              ? 'नाम उपलब्ध छैन'
-              : 'Untitled scheme'
-          );
+          getField(scheme, 'category') ||
+          (currentLang === 'np'
+            ? 'नाम उपलब्ध छैन'
+            : 'Untitled scheme');
 
         const tags =
           Array.isArray(
@@ -3371,28 +3379,18 @@ function renderSchemeObject(
     '';
 
   const title =
-    getLocalized(
-      scheme.name ||
-      scheme.title,
-      currentLang === 'np'
-        ? 'कृषि योजना'
-        : 'Agriculture Scheme'
-    );
+    getField(scheme, 'category') ||
+    (currentLang === 'np'
+      ? 'कृषि योजना'
+      : 'Agriculture Scheme');
 
   const description =
-    getLocalized(
-      scheme.description ||
-      scheme.summary,
-      ''
-    );
+    getField(scheme, 'summary');
 
   const provider =
-    getLocalized(
-      scheme.provider ||
-      scheme.implementing_agency ||
-      scheme.office,
-      ''
-    );
+    getField(scheme, 'provider') ||
+    getField(scheme, 'implementing_agency') ||
+    getField(scheme, 'office');
 
   const bookmarked =
     isBookmarked(id);
@@ -4258,11 +4256,18 @@ function renderMandi(
             item.commodity ||
             '—';
 
-          const price =
+          const min =
+            item.min ??
             item.price ??
             item.modal_price ??
-            item.value ??
-            '—';
+            item.value;
+
+          const max = item.max;
+
+          const price =
+            (min !== undefined && max !== undefined && min !== '—' && max !== '—')
+              ? `NPR ${min} – ${max}`
+              : (min !== undefined && min !== '—' ? `NPR ${min}` : '—');
 
           const unit =
             item.unit ||
@@ -4282,11 +4287,7 @@ function renderMandi(
               </h3>
 
               <div class="mandi-price">
-                ${
-                  typeof price === 'number'
-                    ? formatNPR(price)
-                    : escapeHTML(price)
-                }
+                ${escapeHTML(price)}
               </div>
 
               <div style="
