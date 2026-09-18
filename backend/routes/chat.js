@@ -145,7 +145,18 @@ router.post('/', async (req, res) => {
         body: JSON.stringify({
           system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
           contents,
-          generationConfig: { maxOutputTokens: 800 },
+          generationConfig: {
+            // gemini-3.6-flash has "thinking" turned on by default, and
+            // those invisible reasoning tokens are deducted from the SAME
+            // maxOutputTokens budget as the visible reply. With too small a
+            // budget, the model spends it all thinking and the visible
+            // answer comes back empty or cut off after a line or two.
+            // thinkingBudget: 0 is rejected by this model (400 error), so
+            // the fix is: cap thinking to 'minimal' AND give enough total
+            // budget for both the thinking and a full visible answer.
+            maxOutputTokens: 3000,
+            thinkingConfig: { thinkingLevel: 'minimal' },
+          },
         }),
       }
     );
@@ -164,6 +175,22 @@ router.post('/', async (req, res) => {
         data.candidates[0].content.parts &&
         data.candidates[0].content.parts.map((p) => p.text).join('\n')) ||
       '';
+
+    if (!reply) {
+      // This shouldn't happen with the budget set above, but if it does
+      // (e.g. Google changes the model's thinking behavior again), log
+      // enough detail to diagnose it rather than silently returning "".
+      console.warn(
+        'Gemini returned no visible text. finishReason:',
+        data.candidates && data.candidates[0] && data.candidates[0].finishReason,
+        '| usage:',
+        data.usageMetadata
+      );
+      return res.json({
+        reply:
+          "Sorry, I couldn't form a full reply that time — please try asking again, maybe a bit more briefly.",
+      });
+    }
 
     res.json({ reply });
   } catch (err) {
