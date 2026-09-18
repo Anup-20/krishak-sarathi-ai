@@ -19,7 +19,7 @@ const router = express.Router();
 // with a clear "as of" timestamp instead of an error.
 // ---------------------------------------------------------------------------
 
-const SOURCE_URL = 'https://kalimatimarket.gov.np/home/wpricelist';
+const SOURCE_URL = 'https://kalimatimarket.gov.np/price';
 const REFRESH_INTERVAL_MS = 30 * 60 * 1000; // refresh every 30 minutes
 
 let cache = {
