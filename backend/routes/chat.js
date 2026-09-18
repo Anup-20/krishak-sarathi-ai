@@ -2,6 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
 const schemesData = require('../data/schemes.json');
+const cropHealthData = require('../data/crop_health.json');
 
 // This route uses Google's Gemini API, which has a genuinely free tier (no
 // credit card, no expiration — see https://aistudio.google.com) rather than
@@ -40,6 +41,25 @@ function buildSchemesBriefing() {
 
 const SCHEMES_BRIEFING = buildSchemesBriefing();
 
+// Same idea as buildSchemesBriefing, but for the curated crop pest/disease
+// database, so the advisor can name a specific disease/pest and its
+// symptoms/management rather than guessing from general training knowledge.
+function buildCropHealthBriefing() {
+  const lines = cropHealthData.entries.map((e) => {
+    const bits = [
+      `- [${e.id}] ${e.crop_en} — ${e.name_en} (${e.type}; causal agent: ${e.causal_agent})`,
+      `  Symptoms: ${e.symptoms_en}`,
+      `  Favorable conditions: ${e.favorable_conditions_en}`,
+      `  Management: ${(e.management_en || []).join(' | ')}`,
+      `  Source: ${e.source_url || 'n/a'} (last checked ${e.last_checked || 'unknown'})`,
+    ];
+    return bits.join('\n');
+  });
+  return lines.join('\n\n');
+}
+
+const CROP_HEALTH_BRIEFING = buildCropHealthBriefing();
+
 // System prompt shapes how the AI advisor behaves. Tune this to match your
 // tone and areas of expertise. Keep answers practical and locally relevant.
 const SYSTEM_PROMPT = `You are Sarathi, the AI farming and loan/subsidy advisor for
@@ -64,6 +84,15 @@ Rules:
   for this reason.
 - If a farmer's question isn't covered by the curated data, say so plainly
   rather than inventing scheme details.
+- For crop pest/disease questions, check the CURATED CROP HEALTH DATA below
+  first. If a farmer's description plausibly matches an entry, name it,
+  explain the symptoms and management steps from that entry, and always add
+  that a definitive diagnosis and any chemical treatment should be confirmed
+  with their local Agriculture Knowledge Center before spending money —
+  misdiagnosis wastes money and can make resistance problems worse. If
+  nothing in the curated data matches well, say so rather than guessing at a
+  specific disease name, and suggest describing the symptoms to their local
+  Agriculture Knowledge Center in person.
 - Never give advice that could damage crops or harm health (e.g. unsafe
   pesticide mixing or dosing) without a clear safety caveat.
 - You are not a substitute for an in-person soil test, bank consultation, or
@@ -72,7 +101,11 @@ Rules:
 
 CURATED SCHEMES DATA (source: backend/data/schemes.json — verify against the
 official sources listed before quoting a number):
-${SCHEMES_BRIEFING}`;
+${SCHEMES_BRIEFING}
+
+CURATED CROP HEALTH DATA (source: backend/data/crop_health.json — a
+reference set covering some major Nepal crop pests/diseases, not exhaustive):
+${CROP_HEALTH_BRIEFING}`;
 
 router.post('/', async (req, res) => {
   try {

@@ -2,9 +2,10 @@
   "_note": "SAMPLE STRUCTURE ONLY. Replace every description, rate, amount, office name, and step below with your own verified, current information before publishing. Do not ship government scheme specifics you haven't confirmed against an official source. The shape of each object (fields below) is what the backend and frontend expect — keep it when you edit. 'last_checked' should be updated every time you re-verify an entry; the frontend surfaces this date so farmers know how fresh the information is.",
   "sources": [
     { "name": "Ministry of Agriculture & Livestock Development (MoALD)", "url": "https://moald.gov.np" },
-    { "name": "Nepal Rastra Bank (NRB) circulars", "url": "https://www.nrb.org.np" },
+    { "name": "Nepal Rastra Bank (NRB) — Concessional Loan circulars & monthly subsidized-loan reports", "url": "https://www.nrb.org.np/category/concessional-loan/" },
     { "name": "Agriculture Development Bank Ltd. (ADBL)", "url": "https://adbl.gov.np" },
-    { "name": "National Dairy Development Board (NDDB)", "url": "https://nddb.gov.np" }
+    { "name": "National Dairy Development Board (NDDB)", "url": "https://nddb.gov.np" },
+    { "name": "The Kathmandu Post — agriculture insurance coverage reporting", "url": "https://kathmandupost.com/money/2026/08/19/more-farmers-are-getting-insurance-but-crops-are-still-left-behind" }
   ],
   "schemes": [
     {
@@ -15,10 +16,10 @@
       "difficulty": "medium",
       "processing_time_en": "Typically 2–6 weeks after complete documents are submitted",
       "processing_time_np": "पूरा कागजात बुझाएपछि सामान्यतया २–६ हप्ता",
-      "summary_en": "Nepal Rastra Bank's concessional-interest program lets commercial banks lend to farmers at a reduced rate, with the government covering part of the interest. Ask your bank whether your crop/livestock activity qualifies this fiscal year.",
-      "summary_np": "नेपाल राष्ट्र बैंकको ब्याज सहुलियत कार्यक्रम अन्तर्गत वाणिज्य बैंकहरूले किसानलाई घटी ब्याजदरमा कर्जा दिन्छन्, सरकारले ब्याजको केही हिस्सा बहन गर्छ। तपाईंको बाली/पशुपालन गतिविधि यो आर्थिक वर्षमा योग्य छ कि छैन बैंकसँग बुझ्नुहोस्।",
-      "interest_note_en": "Rate and subsidy percentage change by fiscal year — confirm the current circular with your bank or NRB before applying.",
-      "interest_note_np": "ब्याजदर र अनुदान प्रतिशत हरेक आर्थिक वर्ष फेरिन सक्छ — आवेदन गर्नुअघि बैंक वा राष्ट्र बैंकसँग हालको परिपत्र पक्का गर्नुहोस्।",
+      "summary_en": "Under NRB's 'Working Procedure on Interest Subvention for Concessional Loans', the government pays part of the interest on qualifying commercial agriculture and livestock loans taken from banks/financial institutions, so the farmer pays a lower effective rate. A related, longer-running youth-focused version of this scheme (running since FY 2014/15) covers 5% of the interest specifically on loans that help young people start or expand agriculture/livestock businesses. The scheme has been revised more than once — most recently in 2082 BS (2025), when the government narrowed the subsidy to a maximum of about 3% across roughly eight loan categories and removed a couple of previously-covered categories (such as the extra subsidy for large commercial loans above Rs 5 crore). Because of these frequent revisions, treat any percentage here as a starting point for a conversation with your bank, not a guaranteed number.",
+      "summary_np": "राष्ट्र बैंकको 'सहुलियतपूर्ण कर्जामा ब्याज अनुदान सम्बन्धी कार्यविधि' अन्तर्गत, बैंक/वित्तीय संस्थाबाट लिइएको योग्य व्यावसायिक कृषि तथा पशुपालन कर्जाको ब्याजको एक हिस्सा सरकारले तिर्छ, जसले किसानले तिर्नुपर्ने प्रभावी ब्याजदर घटाउँछ। यससँगै जोडिएको, अलि लामो समयदेखि (आ.व. २०७१/७२ देखि) चलिरहेको युवा-केन्द्रित संस्करणले युवाले कृषि/पशुपालन व्यवसाय सुरु वा विस्तार गर्न लिएको कर्जाको ब्याजको ५% छुट्टै दिन्छ। यो योजना पटक-पटक संशोधन भएको छ — पछिल्लो पटक २०८२ सालमा सरकारले अनुदानलाई लगभग ८ वटा कर्जा वर्गमा बढीमा ३% मा साँघुर्‍यायो र पहिले समेटिएका केही वर्ग (जस्तै ५ करोडभन्दा माथिको ठूलो व्यावसायिक कर्जामा थप अनुदान) हटायो। यति धेरै पटक परिवर्तन हुने भएकाले, यहाँको प्रतिशतलाई निश्चित संख्या नभई बैंकसँगको कुराकानीको सुरुवात बिन्दुको रूपमा मात्र लिनुहोस्।",
+      "interest_note_en": "As of the most recent (2082 BS) revision, the general interest subsidy ceiling was lowered to roughly 3% across the covered categories, while a separate youth agriculture/livestock loan subsidy of around 5% has existed since FY 2014/15 — these are two different tracks, and which one applies depends on your specific loan and age. Confirm the current circular with your bank or NRB before applying; NRB also publishes a subsidized-loan report roughly monthly.",
+      "interest_note_np": "पछिल्लो (२०८२ साल) संशोधन अनुसार, सामान्य ब्याज अनुदानको सीमा समेटिएका वर्गहरूमा लगभग ३% मा झारिएको छ, जबकि आ.व. २०७१/७२ देखि छुट्टै युवा कृषि/पशुपालन कर्जा अनुदान लगभग ५% रहँदै आएको छ — यी दुई फरक-फरक व्यवस्था हुन्, कुन लागू हुन्छ भन्ने कुरा तपाईंको कर्जाको प्रकार र उमेरमा भर पर्छ। आवेदन गर्नुअघि बैंक वा राष्ट्र बैंकसँग हालको परिपत्र पक्का गर्नुहोस्; राष्ट्र बैंकले लगभग हरेक महिना अनुदानप्राप्त कर्जाको प्रतिवेदन पनि सार्वजनिक गर्छ।",
       "collateral_note_en": "Usually land or fixed-deposit collateral; some group-guarantee options exist for smaller loans through cooperatives.",
       "collateral_note_np": "सामान्यतया जग्गा वा मुद्दती निक्षेप धितो चाहिन्छ; सानो रकमको हकमा सहकारी मार्फत समूह जमानतको विकल्प पनि हुन्छ।",
       "office_en": "Any commercial bank branch offering agriculture loans, or ADBL",
@@ -47,8 +48,8 @@
         "स्वीकृतिपछि कर्जा सम्झौता र भुक्तानी तालिकामा हस्ताक्षर गर्नुहोस्।",
         "ब्याज अनुदान सम्बन्धी कागजात सुरक्षित राख्नुहोस् — प्रत्येक वर्ष पुनः प्रमाणित गर्नुपर्न सक्छ।"
       ],
-      "source_url": "https://www.nrb.org.np",
-      "last_checked": "2025-01-01"
+      "source_url": "https://www.nrb.org.np/category/concessional-loan/",
+      "last_checked": "2026-09-18"
     },
     {
       "id": "equipment-subsidy",
@@ -58,8 +59,8 @@
       "difficulty": "easy",
       "processing_time_en": "Often tied to a short 7–15 day municipal application window",
       "processing_time_np": "प्रायः नगरपालिकाको ७–१५ दिने छोटो आवेदन अवधिसँग जोडिएको",
-      "summary_en": "Partial subsidy on approved farm machinery and equipment purchases, applied for through your local Agriculture Knowledge Center or municipality.",
-      "summary_np": "स्वीकृत कृषि औजार तथा उपकरण खरिदमा आंशिक अनुदान, स्थानीय कृषि ज्ञान केन्द्र वा नगरपालिका मार्फत आवेदन गरिने।",
+      "summary_en": "Partial subsidy on approved farm machinery and equipment purchases (power tillers, threshers, pump sets, sprayers, tea/grass harvesters, etc.), applied for through your local Agriculture Knowledge Center or municipality. The subsidy percentage is set locally and varies a lot: some rural municipalities have offered as much as 75% (farmer pays only 25%), while some metropolitan-city programs have offered 50% — so what you're offered depends heavily on your specific local government's budget that year, not a single national rate.",
+      "summary_np": "स्वीकृत कृषि औजार तथा उपकरण (पावर टिलर, थ्रेसर, पम्प सेट, स्प्रेयर, चिया/घाँस काट्ने मेसिन आदि) खरिदमा आंशिक अनुदान, स्थानीय कृषि ज्ञान केन्द्र वा नगरपालिका मार्फत आवेदन गरिने। अनुदान प्रतिशत स्थानीय तहले तोक्ने भएकाले धेरै फरक पर्छ: केही गाउँपालिकाले ७५% सम्म (किसानले जम्मा २५% मात्र तिर्ने) दिएका छन्, भने केही महानगरपालिका कार्यक्रमले ५०% दिएका छन् — त्यसैले तपाईंलाई कति प्रतिशत मिल्छ भन्ने कुरा एउटै राष्ट्रिय दरमा नभई त्यस वर्षको तपाईंको स्थानीय सरकारको बजेटमा निर्भर हुन्छ।",
       "interest_note_en": null,
       "interest_note_np": null,
       "collateral_note_en": "Not applicable — this is a grant, not a loan.",
@@ -88,7 +89,7 @@
         "स्वीकृतिपछि अनुदान रकम प्रायः बैंक खातामा प्राप्त हुन्छ।"
       ],
       "source_url": "https://moald.gov.np",
-      "last_checked": "2025-01-01"
+      "last_checked": "2026-09-18"
     },
     {
       "id": "youth-self-employment-loan",
@@ -177,8 +178,8 @@
       "difficulty": "easy",
       "processing_time_en": "Same-day to a few days through an insurance agent",
       "processing_time_np": "बीमा अभिकर्ता मार्फत सोहीदिन देखि केही दिनसम्म",
-      "summary_en": "The government subsidizes a large share of crop and livestock insurance premiums, so farmers pay only a small portion out of pocket while getting cover against natural disaster, disease, or death of livestock.",
-      "summary_np": "सरकारले बाली तथा पशु बीमा प्रिमियमको ठूलो हिस्सा अनुदानमा दिन्छ, त्यसैले किसानले सामान्य रकम मात्र तिरेर प्राकृतिक प्रकोप, रोग, वा पशुको मृत्युविरुद्ध बीमा सुरक्षा पाउँछन्।",
+      "summary_en": "The government subsidizes a large share of agriculture, livestock, and herb insurance premiums under a tiered structure: currently around 80% subsidy for policies with an insured value up to Rs 10 million, dropping to 50% for larger policies above that. The programme covers roughly 27 crops (including staples and cash crops like ginger, cardamom, mangoes, and pulses) plus livestock and fish. In practice, uptake for crop insurance specifically has stayed much lower than for livestock/fish insurance nationally — worth knowing so you're not surprised if your local agent has less experience processing a crop claim than a livestock one.",
+      "summary_np": "सरकारले तहगत संरचनामा कृषि, पशुपन्छी, तथा जडीबुटी बीमा प्रिमियमको ठूलो हिस्सा अनुदान दिन्छ: हाल १० लाख (Rs 1 crore/10 million) सम्मको बीमा रकमको लागि लगभग ८०% अनुदान, त्योभन्दा माथिको ठूलो बीमामा ५०% मा झर्छ। यो कार्यक्रमले अदुवा, अलैंची, आँप, दालजस्ता लगभग २७ बाली साथै पशुपन्छी र माछा समेट्छ। व्यवहारमा भने, राष्ट्रियस्तरमा बाली बीमाको प्रयोग पशुपन्छी/माछा बीमाभन्दा धेरै कम रहेको छ — तपाईंको स्थानीय एजेन्टलाई पशु दाबीभन्दा बाली दाबी प्रशोधन गर्ने अनुभव कम हुन सक्छ भन्ने कुरा थाहा पाउनु राम्रो हुन्छ।",
       "interest_note_en": null,
       "interest_note_np": null,
       "collateral_note_en": "Not applicable — this is insurance, not a loan.",
@@ -205,8 +206,8 @@
         "बीमा कागजात सुरक्षित राख्नुहोस् — दाबी गर्दा चाहिन्छ।",
         "क्षति भएमा तुरुन्त बीमा कम्पनीलाई जानकारी दिई प्रमाण (फोटो) राख्नुहोस्।"
       ],
-      "source_url": "https://moald.gov.np",
-      "last_checked": "2025-01-01"
+      "source_url": "https://kathmandupost.com/money/2026/08/19/more-farmers-are-getting-insurance-but-crops-are-still-left-behind",
+      "last_checked": "2026-09-18"
     },
     {
       "id": "cooperative-micro-loan",

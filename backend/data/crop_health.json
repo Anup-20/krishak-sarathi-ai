@@ -1,0 +1,158 @@
+{
+  "_note": "Curated from published Nepal-specific agricultural research (NARC, NAMEA, peer-reviewed journals — see source_url on each entry). This is reference material, not a live diagnostic tool: always tell farmers to confirm a diagnosis with their local Agriculture Knowledge Center before spending money on chemical treatment, since misdiagnosis wastes money and can worsen resistance problems. Re-verify against current extension advisories each season, since recommended chemicals and resistant varieties change as pathogens develop resistance.",
+  "entries": [
+    {
+      "id": "rice-blast",
+      "crop_en": "Rice / Paddy",
+      "crop_np": "धान",
+      "name_en": "Rice Blast",
+      "name_np": "धानको ब्लास्ट रोग",
+      "type": "fungal",
+      "causal_agent": "Magnaporthe oryzae (Pyricularia oryzae)",
+      "regions_en": "All rice-growing regions of Nepal; more severe where nitrogen fertilizer is overused",
+      "regions_np": "नेपालका सबै धान खेती क्षेत्र; नाइट्रोजन मल धेरै प्रयोग गरेको खेतमा बढी गम्भीर",
+      "symptoms_en": "Spindle-shaped (diamond) spots on leaves with a grey-white center and dark brown border. If it spreads to the neck of the panicle (neck blast), the panicle can snap and produce empty grain.",
+      "symptoms_np": "पातमा खैरो घेरा र बीचमा खैरो-सेतो रङको धुर्मुसे (डायमन्ड) आकारको दाग देखिन्छ। बालाको घाँटीसम्म फैलिए (नेक ब्लास्ट) बाला भाँचिन सक्छ र दाना खाली रहन्छ।",
+      "favorable_conditions_en": "High humidity, prolonged leaf wetness, cloudy weather, and excess nitrogen application all favor the disease.",
+      "favorable_conditions_np": "उच्च आर्द्रता, पात लामो समय भिजिरहनु, बादल लागेको मौसम, र अत्यधिक नाइट्रोजन प्रयोगले रोग बढाउँछ।",
+      "management_en": [
+        "Split your nitrogen fertilizer into 2-3 smaller applications instead of one large dose — excess nitrogen at once is one of the biggest risk factors.",
+        "Use certified, disease-tolerant seed varieties where available.",
+        "Avoid dense planting; good spacing improves airflow and reduces humidity around the crop.",
+        "Remove and destroy infected plant debris after harvest rather than leaving it in the field.",
+        "If disease is confirmed by your Agriculture Knowledge Center, a recommended fungicide may be needed — do not choose or dose a fungicide yourself without their guidance, since incorrect use wastes money and can build resistance."
+      ],
+      "management_np": [
+        "नाइट्रोजन मल एकैचोटि नभई २-३ पटकमा छुट्याएर हाल्नुहोस् — एकैचोटि धेरै नाइट्रोजन हाल्नु प्रमुख जोखिम हो।",
+        "उपलब्ध भएसम्म प्रमाणित, रोग सहनशील बीउ प्रयोग गर्नुहोस्।",
+        "बीउ बाक्लो नरोप्नुहोस्; उचित दूरीले हावा-प्रवाह बढाई आर्द्रता घटाउँछ।",
+        "फसल काटेपछि रोगी बोटको अवशेष खेतमा नछोडी नष्ट गर्नुहोस्।",
+        "कृषि ज्ञान केन्द्रले रोग पुष्टि गरे मात्र सिफारिस गरिएको फङ्गिसाइड प्रयोग गर्नुहोस् — आफैं छानेर वा मात्रा तोकेर प्रयोग नगर्नुहोस्, गलत प्रयोगले पैसा खेर जान्छ र प्रतिरोध बढाउँछ।"
+      ],
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12238087/",
+      "last_checked": "2025-01-01"
+    },
+    {
+      "id": "rice-bacterial-leaf-blight",
+      "crop_en": "Rice / Paddy",
+      "crop_np": "धान",
+      "name_en": "Bacterial Leaf Blight",
+      "name_np": "ब्याक्टेरियल लिफ ब्लाइट",
+      "type": "bacterial",
+      "causal_agent": "Xanthomonas oryzae pv. oryzae",
+      "regions_en": "Common wherever rice is grown, especially after heavy rain or strong wind following high-nitrogen fertilization",
+      "regions_np": "धान खेती हुने सबैतिर सामान्य, विशेष गरी धेरै नाइट्रोजन हालेपछि भारी वर्षा वा तेज हावा चलेमा",
+      "symptoms_en": "Yellow stripes or water-soaked streaks along the leaf edge that turn white as the disease spreads; young seedlings may wilt entirely. Milky bacterial ooze can be seen on leaves in early morning.",
+      "symptoms_np": "पातको किनारमा पहेंलो धर्का वा पानी सोसिएको जस्तो धर्का देखिन्छ जुन रोग बढ्दै जाँदा सेतो हुन्छ; कलिला बिरुवा पूर्ण रूपमा ओइलाउन सक्छन्। बिहान सबेरै पातमा दूधे रङको ब्याक्टेरिया झोल देखिन सक्छ।",
+      "favorable_conditions_en": "High nitrogen fertilization, heavy rainfall, and strong winds all increase spread. Water flowing from an infected field into a healthy one is a common way it spreads between plots.",
+      "favorable_conditions_np": "धेरै नाइट्रोजन मल, भारी वर्षा, र तेज हावाले फैलावट बढाउँछ। रोगी खेतबाट स्वस्थ खेतमा पानी बग्नु फैलिने सामान्य कारण हो।",
+      "management_en": [
+        "Keep fields free of weeds, which can host the bacteria between seasons.",
+        "Do not let irrigation water flow directly from a known-infected field into a healthy one.",
+        "Let the field dry out completely before ploughing after harvest, rather than ploughing wet infected residue back in.",
+        "Avoid excess nitrogen application, as with rice blast.",
+        "This is a bacterial disease, so fungicides will not help — confirm with your Agriculture Knowledge Center before buying any treatment."
+      ],
+      "management_np": [
+        "खेतलाई झारपात रहित राख्नुहोस्, यसले ब्याक्टेरियालाई मौसम बीचमा बाँच्न सघाउँछ।",
+        "रोगी खेतबाट सिँचाइको पानी सिधै स्वस्थ खेतमा जान नदिनुहोस्।",
+        "फसल काटेपछि खेत पूर्ण रूपमा सुक्न दिनुहोस्, भिजेको रोगी अवशेष सिधै जोत्नु हुँदैन।",
+        "धानको ब्लास्ट रोगमा जस्तै अत्यधिक नाइट्रोजनबाट जोगिनुहोस्।",
+        "यो ब्याक्टेरियाजन्य रोग भएकाले फङ्गिसाइडले काम गर्दैन — कुनै पनि औषधि किन्नुअघि कृषि ज्ञान केन्द्रसँग पुष्टि गर्नुहोस्।"
+      ],
+      "source_url": "https://www.bighaat.com/kisan-vedika/blogs/management-of-bacterial-leaf-blight-in-rice-paddy",
+      "last_checked": "2025-01-01"
+    },
+    {
+      "id": "maize-fall-armyworm",
+      "crop_en": "Maize",
+      "crop_np": "मकै",
+      "name_en": "Fall Armyworm",
+      "name_np": "फल आर्मीवर्म",
+      "type": "insect",
+      "causal_agent": "Spodoptera frugiperda",
+      "regions_en": "Present across Nepal since 2019; the Terai and inner-Terai are most affected due to favorable climate, though it has spread to mid-hill maize areas too",
+      "regions_np": "सन् २०१९ देखि नेपालभर देखिएको; अनुकूल मौसमका कारण तराई तथा भित्री तराई सबैभन्दा प्रभावित छन्, तर मध्य पहाडी मकै क्षेत्रमा पनि फैलिसकेको छ",
+      "symptoms_en": "Young larvae scrape leaf surfaces leaving a papery \"window\" appearance; older larvae chew ragged holes in the whorl (the young rolled-up leaves at the plant's center) and can bore directly into developing ears, causing the most economic damage.",
+      "symptoms_np": "साना कीराले पातको सतह कुरेर कागज जस्तो पातलो देखिने बनाउँछन्; ठूला कीराले बीचको नयाँ मुर्किएको पात (व्होर्ल) मा नियमित नआकारका प्वाल पार्छन् र सिधै दानामा पस्न सक्छन्, जसले सबैभन्दा धेरै आर्थिक नोक्सान गर्छ।",
+      "favorable_conditions_en": "Late-planted or delayed-maturing maize varieties are more vulnerable. Spreads faster in the monsoon season when conditions favor rapid larval development.",
+      "favorable_conditions_np": "ढिलो रोपिएको वा ढिलो पाक्ने मकै जातहरू बढी जोखिममा हुन्छन्। वर्षायाममा कीराको वृद्धि छिटो हुने भएकाले फैलावट बढी हुन्छ।",
+      "management_en": [
+        "Plant early in the recommended window for your area rather than late — delayed maize is consistently more affected.",
+        "Check the whorl of young plants regularly; catching an infestation early (before larvae bore into the ear) makes control far more effective.",
+        "Intercropping maize with legumes or other companion crops can help reduce infestation compared to a maize monoculture.",
+        "A low-cost, farmer-tested option in Nepal is applying a small amount of grease or ash to the whorl/leaf axil, which can physically reduce larval survival — ask your Agriculture Knowledge Center whether this is being recommended in your district this season.",
+        "If chemical control is needed, this must be decided with your Agriculture Knowledge Center — overuse of broad chemical insecticides here also kills the natural predators that would otherwise help control the pest, and resistance has already been reported to some products."
+      ],
+      "management_np": [
+        "आफ्नो क्षेत्रको सिफारिस गरिएको समयमै मकै रोप्नुहोस्, ढिलो रोपिएको मकैमा असर बढी हुन्छ।",
+        "कलिला बोटको व्होर्ल नियमित जाँच्नुहोस्; कीरा दानासम्म नपुग्दै समयमै पत्ता लगाए नियन्त्रण धेरै प्रभावकारी हुन्छ।",
+        "मकैसँग दलहनजन्य वा अन्य साथी बाली मिसाएर लगाउँदा एकल मकै खेतीभन्दा प्रकोप कम हुन सक्छ।",
+        "नेपालमा किसानले प्रयोग गरेको कम लागतको उपाय भनेको व्होर्ल/पात जोर्नीमा थोरै ग्रिस वा खरानी लगाउनु हो, जसले कीराको बाँच्ने दर भौतिक रूपमा घटाउन सक्छ — यो वर्ष तपाईंको जिल्लामा सिफारिस भए नभएको कृषि ज्ञान केन्द्रसँग सोध्नुहोस्।",
+        "रासायनिक नियन्त्रण चाहिएमा कृषि ज्ञान केन्द्रसँगै निर्णय गर्नुहोस् — फराकिलो किटनाशकको अत्यधिक प्रयोगले प्राकृतिक शत्रु कीरा पनि मर्छन् र केही औषधिमा प्रतिरोध पनि देखिइसकेको छ।"
+      ],
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9072539/",
+      "last_checked": "2025-01-01"
+    },
+    {
+      "id": "potato-late-blight",
+      "crop_en": "Potato",
+      "crop_np": "आलु",
+      "name_en": "Late Blight",
+      "name_np": "आलुको लेट ब्लाइट (पछौटे रोग)",
+      "type": "fungal (oomycete)",
+      "causal_agent": "Phytophthora infestans",
+      "regions_en": "Mid-hill and high-hill regions are hit hardest (cool, cloudy, humid conditions favor it); Terai plains are affected roughly every third year when weather is conducive. Losses have been recorded up to ~75% in the hills and higher in some plains outbreaks.",
+      "regions_np": "मध्य पहाड र उच्च पहाडी क्षेत्रमा सबैभन्दा बढी असर पर्छ (चिसो, बादलयुक्त, आर्द्र मौसमले बढाउँछ); तराईमा मौसम अनुकूल भएको वर्ष लगभग हरेक तेस्रो वर्ष प्रभाव पर्छ। पहाडमा लगभग ७५% सम्म र केही तराई प्रकोपमा त्योभन्दा बढी नोक्सान दर्ता भएको छ।",
+      "symptoms_en": "Dark, water-soaked patches on leaves that expand quickly, often with a pale ring around the edge; a white fungal growth can appear on the underside of leaves in humid weather. Infected tubers develop brown, dry-rot patches.",
+      "symptoms_np": "पातमा छिटो फैलिने कालो, पानी सोसिएको दाग देखिन्छ, प्रायः किनारमा हल्का घेरा हुन्छ; आर्द्र मौसममा पातको फेदमा सेतो ढुसी देखिन सक्छ। सङ्क्रमित गेडामा खैरो, सुक्खा-कुहिने दाग बन्छ।",
+      "favorable_conditions_en": "Cool temperatures (roughly 10-25°C), high humidity, and frequent cloud cover or rain — most common during the monsoon-season potato crop in the hills.",
+      "favorable_conditions_np": "चिसो तापक्रम (लगभग १०-२५°C), उच्च आर्द्रता, र बारम्बार बादल वा वर्षा — पहाडी क्षेत्रमा वर्षायामको आलु बालीमा सबैभन्दा सामान्य।",
+      "management_en": [
+        "Use certified, disease-free seed tubers — infected seed tubers are one of the main ways the disease carries over between seasons.",
+        "Where available, choose late-blight-tolerant varieties released by the Nepal Agricultural Research Council (NARC) for your region (hills vs. plains varieties differ).",
+        "Improve field drainage and avoid overly dense planting so foliage dries faster after rain or dew.",
+        "Destroy volunteer potato plants and infected crop residue between seasons rather than leaving them in or near the field.",
+        "Because resistance to some older fungicides (like metalaxyl) has been reported in Nepal's Phytophthora infestans populations, confirm the current recommended fungicide with your Agriculture Knowledge Center rather than reusing an old product by habit."
+      ],
+      "management_np": [
+        "प्रमाणित, रोगमुक्त गेडा बीउ प्रयोग गर्नुहोस् — सङ्क्रमित बीउ गेडा नै रोग मौसम-मौसम सर्ने प्रमुख माध्यम हो।",
+        "उपलब्ध भएमा नेपाल कृषि अनुसन्धान परिषद् (NARC) ले तपाईंको क्षेत्र (पहाड वा तराई) का लागि जारी गरेको लेट ब्लाइट सहनशील जात रोज्नुहोस्।",
+        "खेतको निकास सुधार गर्नुहोस् र बाक्लो नरोप्नुहोस् ताकि वर्षा वा शीतपछि पात छिटो सुक्न सकोस्।",
+        "मौसम बीचमा बचेका आलुका बिरुवा र रोगी अवशेष खेतमा वा नजिकै नछोडी नष्ट गर्नुहोस्।",
+        "नेपालको Phytophthora infestans मा केही पुराना फङ्गिसाइड (जस्तै मेटालाक्सिल) मा प्रतिरोध देखिइसकेकाले पुरानै औषधि बानीले नदोहोर्याई हालको सिफारिस गरिएको औषधि कृषि ज्ञान केन्द्रसँग पक्का गर्नुहोस्।"
+      ],
+      "source_url": "https://www.researchgate.net/publication/339952362_Evaluation_of_fungicides_to_control_potato_late_blight_Phytophthora_infestans_in_the_plains_of_Nepal",
+      "last_checked": "2025-01-01"
+    },
+    {
+      "id": "large-cardamom-chirke-foorkey",
+      "crop_en": "Large Cardamom (Alaichi)",
+      "crop_np": "अलैंची",
+      "name_en": "Chirke & Foorkey Viral Disease",
+      "name_np": "चिर्के तथा फूर्के भाइरस रोग",
+      "type": "viral",
+      "causal_agent": "Large Cardamom Chirke Virus (Chirke) and Cardamom Bushy Dwarf Virus (Foorkey)",
+      "regions_en": "Nepal's large cardamom growing hill districts (e.g. eastern hill districts); a major threat to this high-value export cash crop",
+      "regions_np": "नेपालका अलैंची खेती हुने पहाडी जिल्ला (जस्तै पूर्वी पहाडी जिल्ला); यो उच्च मूल्यको निर्यात बालीका लागि ठूलो खतरा हो",
+      "symptoms_en": "Chirke: dark-green mosaic streaks on light-green leaves, stunted clumps, and sharply reduced flowering. Foorkey: bushy, stunted clumps with many small tillers that fail to flower at all. Both can cause severe yield loss — estimates from Nepal-specific studies range from roughly 80% (Chirke) up to over 90% (Foorkey) in badly affected clumps.",
+      "symptoms_np": "चिर्के: हल्का हरियो पातमा गाढा हरियो मोजाइक धर्का, बोट खुम्चिने, र फूल घटी फुल्ने। फूर्के: घना, खुम्चिएको झुप्पामा धेरै साना कल्ला आउने तर फूलै नफुल्ने। दुवैले उत्पादनमा ठूलो घाटा पुर्‍याउन सक्छ — नेपाल-विशिष्ट अध्ययनहरूले नराम्रोसँग सङ्क्रमित झुप्पामा लगभग ८०% (चिर्के) देखि ९०% भन्दा बढी (फूर्के) सम्म नोक्सान देखाएका छन्।",
+      "favorable_conditions_en": "Both viruses spread mainly through infected rhizomes (planting material) moved between farms, and secondarily through aphid vectors within a plantation — not through soil or seed.",
+      "favorable_conditions_np": "दुवै भाइरस मुख्यतया खेतबाट खेतमा सारिने सङ्क्रमित गाँठा (रोप्ने सामग्री) मार्फत र त्यसपछि खेतभित्रको एफिड कीरा मार्फत फैलिन्छ — माटो वा बीउबाट फैलिँदैन।",
+      "management_en": [
+        "The single most important step: only use certified, virus-free rhizomes/planting material for new plantings — never take planting material from a farm with visible chirke or foorkey symptoms.",
+        "Inspect your plantation regularly; as soon as a clump shows chirke or foorkey symptoms, uproot and destroy (burn) it completely to stop it becoming a source of further spread.",
+        "There are currently no fully resistant commercial cultivars, so prevention (clean planting material + early removal of infected clumps) matters more than any chemical treatment.",
+        "Managing aphid populations in and around the plantation (including the shade trees often planted with cardamom) can slow secondary spread, but should be discussed with your local Agriculture Knowledge Center or the National Dairy Development Board-equivalent cash-crop extension office for your district, since products and dosing are specialized for this crop."
+      ],
+      "management_np": [
+        "सबैभन्दा महत्त्वपूर्ण कुरा: नयाँ रोपाइँका लागि प्रमाणित, भाइरसमुक्त गाँठा/रोप्ने सामग्री मात्र प्रयोग गर्नुहोस् — चिर्के वा फूर्केको लक्षण देखिएको खेतबाट कहिल्यै रोप्ने सामग्री नलिनुहोस्।",
+        "आफ्नो बगैंचा नियमित निरीक्षण गर्नुहोस्; कुनै झुप्पामा चिर्के वा फूर्केको लक्षण देखिनासाथ उखेलेर पूर्ण रूपमा जलाई नष्ट गर्नुहोस् ताकि थप फैलावटको स्रोत नबनोस्।",
+        "हाल पूर्ण प्रतिरोधी व्यावसायिक जात उपलब्ध छैन, त्यसैले रोकथाम (स्वच्छ रोप्ने सामग्री + सङ्क्रमित झुप्पा समयमै हटाउने) कुनै पनि औषधि उपचारभन्दा बढी महत्त्वपूर्ण छ।",
+        "बगैंचा र वरपरका छहारी रूखहरूमा एफिड कीराको व्यवस्थापनले सहायक फैलावट कम गर्न सक्छ, तर उत्पादन र मात्रा यस बालीका लागि विशेष हुने भएकाले आफ्नो जिल्लाको कृषि ज्ञान केन्द्रसँग छलफल गर्नुहोस्।"
+      ],
+      "source_url": "https://journals.aesacademy.org/index.php/aaes/article/view/10-01-022",
+      "last_checked": "2025-01-01"
+    }
+  ]
+}

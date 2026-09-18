@@ -7,6 +7,7 @@ const chatRoute = require('./routes/chat');
 const weatherRoute = require('./routes/weather');
 const mandiRoute = require('./routes/mandi');
 const schemesRoute = require('./routes/schemes');
+const cropHealthRoute = require('./routes/crophealth');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ app.use('/api/chat', chatRoute);
 app.use('/api/weather', weatherRoute);
 app.use('/api/mandi', mandiRoute);
 app.use('/api/schemes', schemesRoute);
+app.use('/api/crop-health', cropHealthRoute);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'krishak-sarathi-ai-backend' });

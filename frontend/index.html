@@ -27,6 +27,7 @@
 <nav class="tabs">
   <button class="tab-btn active" data-tab="chat" data-en="AI Advisor" data-np="AI सल्लाहकार">AI Advisor</button>
   <button class="tab-btn" data-tab="loans" data-en="Loan &amp; Subsidy Guide" data-np="कर्जा तथा अनुदान मार्गदर्शक">Loan &amp; Subsidy Guide</button>
+  <button class="tab-btn" data-tab="crophealth" data-en="Crop Health Guide" data-np="बाली स्वास्थ्य मार्गदर्शक">Crop Health Guide</button>
   <button class="tab-btn" data-tab="calculator" data-en="Loan Calculator" data-np="कर्जा क्यालकुलेटर">Loan Calculator</button>
   <button class="tab-btn" data-tab="weather" data-en="Weather" data-np="मौसम">Weather</button>
   <button class="tab-btn" data-tab="mandi" data-en="Mandi Prices" data-np="बजार भाउ">Mandi Prices</button>
@@ -78,6 +79,34 @@
         <div class="scheme-detail-empty" data-en="Select a scheme on the left to see required documents, the step-by-step process, and where to confirm current terms."
              data-np="बायाँबाट कुनै योजना छान्नुहोस् — चाहिने कागजात, चरणबद्ध प्रक्रिया, र हालको सर्त कहाँ पक्का गर्ने भनी हेर्न सकिन्छ।">
           Select a scheme on the left to see required documents, the step-by-step process, and where to confirm current terms.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROP HEALTH GUIDE -->
+  <section id="tab-crophealth" class="tab-panel">
+    <p class="section-lede" data-en="A researched reference on common Nepal crop pests and diseases — symptoms, what makes them worse, and how to manage them. This is a reference, not a diagnosis: always confirm with your local Agriculture Knowledge Center before spending money on treatment."
+       data-np="नेपालका सामान्य बाली कीरा तथा रोगहरूको अनुसन्धानमा आधारित सन्दर्भ सामग्री — लक्षण, के कारणले बढ्छ, र कसरी व्यवस्थापन गर्ने। यो सन्दर्भ सामग्री मात्र हो, निदान होइन: उपचारमा पैसा खर्च गर्नुअघि सधैं आफ्नो कृषि ज्ञान केन्द्रसँग पक्का गर्नुहोस्।">
+      A researched reference on common Nepal crop pests and diseases — symptoms, what makes them worse, and how to manage them. This is a reference, not a diagnosis: always confirm with your local Agriculture Knowledge Center before spending money on treatment.
+    </p>
+
+    <div class="loan-toolbar">
+      <input type="text" id="crop-search" class="scheme-search"
+             data-en-placeholder="Search by crop or disease (e.g. rice, blast, aphid)…"
+             data-np-placeholder="बाली वा रोगले खोज्नुहोस् (जस्तै धान, ब्लास्ट, एफिड)…"
+             placeholder="Search by crop or disease (e.g. rice, blast, aphid)…" />
+      <div class="tag-chips" id="crop-type-chips">
+        <!-- populated by app.js -->
+      </div>
+    </div>
+
+    <div class="loan-layout">
+      <div id="crophealth-list" class="schemes-list"></div>
+      <div id="crophealth-detail" class="scheme-detail">
+        <div class="scheme-detail-empty" data-en="Select an entry on the left to see symptoms, favorable conditions, and management steps."
+             data-np="बायाँबाट कुनै रोग/कीरा छान्नुहोस् — लक्षण, अनुकूल अवस्था, र व्यवस्थापन चरण हेर्न सकिन्छ।">
+          Select an entry on the left to see symptoms, favorable conditions, and management steps.
         </div>
       </div>
     </div>

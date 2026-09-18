@@ -28,6 +28,8 @@ function setLang(lang) {
   // Re-render dynamic content that isn't covered by data-en/data-np attributes
   if (allSchemes.length) renderSchemesList();
   if (selectedSchemeId) loadSchemeDetail(selectedSchemeId);
+  if (allCropHealth.length) renderCropHealthList();
+  if (selectedCropHealthId) loadCropHealthDetail(selectedCropHealthId);
   renderQuickChips();
 }
 document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
@@ -48,6 +50,10 @@ document.querySelectorAll('.tab-btn').forEach((btn) => {
     if (btn.dataset.tab === 'mandi' && !mandiResult.dataset.loaded) {
       fetchMandi();
       mandiResult.dataset.loaded = 'true';
+    }
+    if (btn.dataset.tab === 'crophealth' && !cropHealthList.dataset.loaded) {
+      fetchCropHealth();
+      cropHealthList.dataset.loaded = 'true';
     }
   });
 });
@@ -234,6 +240,11 @@ async function fetchMandi() {
     let html = '';
     if (data.stale) {
       html += `<p style="color:#a85c32;">${data.message || ''}</p>`;
+    } else if (data.fetchedAt) {
+      const asOf = new Date(data.fetchedAt).toLocaleString(currentLang === 'np' ? 'ne-NP' : 'en-US');
+      html += `<p style="color:var(--ink-soft); font-size:0.82rem;">${
+        currentLang === 'np' ? 'अद्यावधिक' : 'Updated'
+      }: ${asOf} (${currentLang === 'np' ? 'स्वतः हरेक ३० मिनेटमा ताजा हुन्छ' : 'auto-refreshes every 30 min'})</p>`;
     }
     html += '<table class="price-table"><tr><th>Commodity</th><th>Unit</th><th>Min</th><th>Max</th></tr>';
     (data.prices || []).forEach((p) => {
@@ -488,6 +499,148 @@ function printChecklist(s, isNp) {
 }
 
 schemeSearch.addEventListener('input', renderSchemesList);
+
+// ---------- Crop Health Guide ----------
+const cropHealthList = document.getElementById('crophealth-list');
+const cropHealthDetail = document.getElementById('crophealth-detail');
+const cropSearch = document.getElementById('crop-search');
+const cropTypeChipsEl = document.getElementById('crop-type-chips');
+
+let allCropHealth = [];
+let activeCropType = null;
+let selectedCropHealthId = null;
+
+async function fetchCropHealth() {
+  cropHealthList.textContent = currentLang === 'np' ? 'लोड हुँदैछ...' : 'Loading...';
+  try {
+    const res = await fetch(`${API_BASE}/api/crop-health`);
+    allCropHealth = await res.json();
+    renderCropTypeChips();
+    renderCropHealthList();
+  } catch (err) {
+    cropHealthList.textContent = 'Could not reach the server.';
+  }
+}
+
+function renderCropTypeChips() {
+  const typeSet = new Set();
+  allCropHealth.forEach((e) => e.type && typeSet.add(e.type));
+  cropTypeChipsEl.innerHTML = '';
+
+  const allBtn = document.createElement('button');
+  allBtn.type = 'button';
+  allBtn.className = 'tag-chip' + (activeCropType === null ? ' active' : '');
+  allBtn.textContent = currentLang === 'np' ? 'सबै' : 'All';
+  allBtn.addEventListener('click', () => {
+    activeCropType = null;
+    renderCropTypeChips();
+    renderCropHealthList();
+  });
+  cropTypeChipsEl.appendChild(allBtn);
+
+  [...typeSet].sort().forEach((type) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tag-chip' + (activeCropType === type ? ' active' : '');
+    btn.textContent = type;
+    btn.addEventListener('click', () => {
+      activeCropType = activeCropType === type ? null : type;
+      renderCropTypeChips();
+      renderCropHealthList();
+    });
+    cropTypeChipsEl.appendChild(btn);
+  });
+}
+
+function renderCropHealthList() {
+  const query = (cropSearch.value || '').trim().toLowerCase();
+
+  const filtered = allCropHealth.filter((e) => {
+    const matchesType = !activeCropType || e.type === activeCropType;
+    const matchesQuery =
+      !query ||
+      [e.crop_en, e.crop_np, e.name_en, e.name_np, e.causal_agent]
+        .filter(Boolean)
+        .some((f) => f.toLowerCase().includes(query));
+    return matchesType && matchesQuery;
+  });
+
+  cropHealthList.innerHTML = '';
+
+  if (filtered.length === 0) {
+    const empty = document.createElement('p');
+    empty.style.color = 'var(--ink-soft)';
+    empty.style.fontSize = '0.9rem';
+    empty.textContent = currentLang === 'np' ? 'कुनै नतिजा फेला परेन।' : 'No matching entries.';
+    cropHealthList.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach((e) => {
+    const card = document.createElement('div');
+    card.className = 'scheme-card' + (e.id === selectedCropHealthId ? ' selected' : '');
+    card.innerHTML = `
+      <h4>${currentLang === 'np' ? e.crop_np : e.crop_en} — ${currentLang === 'np' ? e.name_np : e.name_en}</h4>
+      <p>${e.causal_agent || ''}</p>
+      <div class="scheme-meta"><span>${e.type}</span>${e.last_checked ? `<span>${currentLang === 'np' ? 'पछिल्लो जाँच' : 'checked'}: ${e.last_checked}</span>` : ''}</div>
+    `;
+    card.addEventListener('click', () => {
+      selectedCropHealthId = e.id;
+      loadCropHealthDetail(e.id);
+      renderCropHealthList();
+    });
+    cropHealthList.appendChild(card);
+  });
+}
+
+async function loadCropHealthDetail(id) {
+  cropHealthDetail.innerHTML = currentLang === 'np' ? 'लोड हुँदैछ...' : 'Loading...';
+  const res = await fetch(`${API_BASE}/api/crop-health/${id}`);
+  const e = await res.json();
+  if (!res.ok) {
+    cropHealthDetail.textContent = e.error || 'Could not load this entry.';
+    return;
+  }
+
+  const isNp = currentLang === 'np';
+  const management = isNp ? e.management_np : e.management_en;
+
+  let html = `<h3>${isNp ? e.crop_np : e.crop_en} — ${isNp ? e.name_np : e.name_en}</h3>`;
+  html += `<div class="verified-line">${isNp ? 'कारक' : 'Causal agent'}: ${e.causal_agent} · ${
+    isNp ? 'स्रोत' : 'source'
+  }: ${e.source_url ? `<a href="${e.source_url}" target="_blank" rel="noopener">${isNp ? 'लिंक' : 'link'}</a>` : '—'} · ${
+    isNp ? 'पछिल्लो जाँच' : 'last checked'
+  }: ${e.last_checked || '—'}</div>`;
+
+  html += `<div class="note-box">🩺 ${isNp ? e.symptoms_np : e.symptoms_en}</div>`;
+  html += `<div class="note-box">🌦️ ${isNp ? e.favorable_conditions_np : e.favorable_conditions_en}</div>`;
+  if (isNp ? e.regions_np : e.regions_en) {
+    html += `<div class="note-box">📍 ${isNp ? e.regions_np : e.regions_en}</div>`;
+  }
+
+  html += `<h4>${isNp ? 'व्यवस्थापन' : 'Management'}</h4><ul>`;
+  (management || []).forEach((m) => (html += `<li>${m}</li>`));
+  html += '</ul>';
+
+  html += `<div class="detail-actions">
+      <button id="ask-about-crophealth">${isNp ? '💬 सारथीलाई सोध्नुहोस्' : '💬 Ask Sarathi about this'}</button>
+    </div>`;
+
+  cropHealthDetail.innerHTML = html;
+
+  document.getElementById('ask-about-crophealth').addEventListener('click', () => {
+    document.querySelector('.tab-btn[data-tab="chat"]').click();
+    const label = isNp ? e.name_np : e.name_en;
+    const crop = isNp ? e.crop_np : e.crop_en;
+    sendChat(
+      isNp
+        ? `मेरो ${crop} मा ${label} जस्तो देखिन्छ, मैले के गर्ने?`
+        : `I think my ${crop} has ${label} — what should I do?`
+    );
+  });
+}
+
+cropSearch.addEventListener('input', renderCropHealthList);
 
 // ---------- Loan (EMI) calculator ----------
 const emiForm = document.getElementById('emi-form');
