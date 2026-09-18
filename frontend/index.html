@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,144 +11,117 @@
 
   <meta
     name="description"
-    content="Krishak Sarathi is an AI-powered agriculture advisory platform helping farmers access practical crop advice, agricultural loans, subsidies, weather information and market prices."
+    content="Krishak Sarathi — AI-powered agricultural advisory, loan, subsidy, weather and market information platform for farmers."
   />
 
   <meta
-    name="keywords"
-    content="Nepal agriculture, agricultural loans Nepal, subsidy Nepal, farmer advisory, crop advice, mandi prices, weather, Krishak Sarathi"
+    name="theme-color"
+    content="#173f35"
   />
 
-  <meta name="author" content="Krishak Sarathi" />
+  <title>Krishak Sarathi — AI Farm & Loan Advisor</title>
 
-  <meta name="theme-color" content="#285943" />
+  <!-- =====================================================
+       FONTS
+       ===================================================== -->
 
-  <meta
-    property="og:title"
-    content="Krishak Sarathi — AI Farm & Loan Advisor"
-  />
-
-  <meta
-    property="og:description"
-    content="Practical agricultural advice, loan and subsidy guidance, weather and market information for farmers."
-  />
-
-  <meta
-    property="og:type"
-    content="website"
-  />
-
-  <title>
-    Krishak Sarathi — AI Farm & Loan Advisor
-  </title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- =====================================================
+       STYLESHEET
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
 
 </head>
 
 
 <body>
 
-  <!-- =========================================================
-       ACCESSIBILITY
-  ========================================================== -->
-
-  <a
-    class="skip-link"
-    href="#main-content"
-  >
-    Skip to main content
-  </a>
-
-
-  <!-- =========================================================
-       HEADER
-  ========================================================== -->
+  <!-- =====================================================
+       TOP HEADER
+       ===================================================== -->
 
   <header class="topbar">
 
-    <div class="topbar-inner">
+    <div class="brand">
 
-      <a
-        href="#"
-        class="brand"
-        aria-label="Krishak Sarathi home"
+      <span
+        class="brand-mark"
+        aria-hidden="true"
       >
+        कृ
+      </span>
+
+      <div class="brand-copy">
 
         <span
-          class="brand-mark"
-          aria-hidden="true"
+          class="brand-name"
+          data-en="Krishak Sarathi"
+          data-np="कृषक सारथी"
         >
-          कृ
+          Krishak Sarathi
         </span>
 
-        <span class="brand-text">
-
-          <span
-            class="brand-name"
-            data-en="Krishak Sarathi"
-            data-np="कृषक सारथी"
-          >
-            Krishak Sarathi
-          </span>
-
-          <span
-            class="brand-tagline"
-            data-en="Your digital farming companion"
-            data-np="तपाईंको डिजिटल कृषि साथी"
-          >
-            Your digital farming companion
-          </span>
-
+        <span
+          class="brand-tagline"
+          data-en="Your digital farming companion"
+          data-np="तपाईंको डिजिटल कृषि साथी"
+        >
+          Your digital farming companion
         </span>
-
-      </a>
-
-
-      <!-- Language -->
-
-      <div
-        class="header-actions"
-        role="group"
-        aria-label="Language selection"
-      >
-
-        <button
-          type="button"
-          id="lang-en"
-          class="lang-btn active"
-          aria-pressed="true"
-        >
-          EN
-        </button>
-
-        <button
-          type="button"
-          id="lang-np"
-          class="lang-btn"
-          aria-pressed="false"
-        >
-          नेपाली
-        </button>
 
       </div>
+
+    </div>
+
+
+    <!-- LANGUAGE -->
+
+    <div
+      class="lang-toggle"
+      role="group"
+      aria-label="Language"
+    >
+
+      <button
+        id="lang-en"
+        class="lang-btn active"
+        type="button"
+      >
+        EN
+      </button>
+
+      <button
+        id="lang-np"
+        class="lang-btn"
+        type="button"
+      >
+        नेपाली
+      </button>
 
     </div>
 
   </header>
 
 
-  <!-- Decorative agricultural divider -->
+  <!-- =====================================================
+       AGRICULTURAL DECORATIVE STRIP
+       ===================================================== -->
 
   <div
     class="terrace-line"
@@ -157,432 +129,450 @@
   ></div>
 
 
-  <!-- =========================================================
+  <!-- =====================================================
        MAIN NAVIGATION
-  ========================================================== -->
+       ===================================================== -->
 
   <nav
     class="tabs"
     aria-label="Main navigation"
   >
 
-    <div class="tabs-inner">
-
-      <button
-        type="button"
-        class="tab-btn active"
-        data-tab="chat"
-        aria-selected="true"
-        role="tab"
-        data-en="AI Advisor"
-        data-np="AI सल्लाहकार"
-      >
-        <span class="tab-icon" aria-hidden="true">✦</span>
-        <span>AI Advisor</span>
-      </button>
+    <button
+      class="tab-btn active"
+      data-tab="chat"
+      type="button"
+      data-en="AI Advisor"
+      data-np="AI सल्लाहकार"
+    >
+      AI Advisor
+    </button>
 
 
-      <button
-        type="button"
-        class="tab-btn"
-        data-tab="loans"
-        aria-selected="false"
-        role="tab"
-        data-en="Loan & Subsidy Guide"
-        data-np="कर्जा तथा अनुदान मार्गदर्शक"
-      >
-        <span class="tab-icon" aria-hidden="true">▣</span>
-        <span>Loan & Subsidy Guide</span>
-      </button>
+    <button
+      class="tab-btn"
+      data-tab="loans"
+      type="button"
+      data-en="Loan &amp; Subsidy Guide"
+      data-np="कर्जा तथा अनुदान मार्गदर्शक"
+    >
+      Loan &amp; Subsidy Guide
+    </button>
 
 
-      <button
-        type="button"
-        class="tab-btn"
-        data-tab="calculator"
-        aria-selected="false"
-        role="tab"
-        data-en="Loan Calculator"
-        data-np="कर्जा क्यालकुलेटर"
-      >
-        <span class="tab-icon" aria-hidden="true">⌁</span>
-        <span>Loan Calculator</span>
-      </button>
+    <button
+      class="tab-btn"
+      data-tab="calculator"
+      type="button"
+      data-en="Loan Calculator"
+      data-np="कर्जा क्यालकुलेटर"
+    >
+      Loan Calculator
+    </button>
 
 
-      <button
-        type="button"
-        class="tab-btn"
-        data-tab="weather"
-        aria-selected="false"
-        role="tab"
-        data-en="Weather"
-        data-np="मौसम"
-      >
-        <span class="tab-icon" aria-hidden="true">☼</span>
-        <span>Weather</span>
-      </button>
+    <button
+      class="tab-btn"
+      data-tab="weather"
+      type="button"
+      data-en="Weather"
+      data-np="मौसम"
+    >
+      Weather
+    </button>
 
 
-      <button
-        type="button"
-        class="tab-btn"
-        data-tab="mandi"
-        aria-selected="false"
-        role="tab"
-        data-en="Mandi Prices"
-        data-np="बजार भाउ"
-      >
-        <span class="tab-icon" aria-hidden="true">↗</span>
-        <span>Mandi Prices</span>
-      </button>
-
-    </div>
+    <button
+      class="tab-btn"
+      data-tab="mandi"
+      type="button"
+      data-en="Mandi Prices"
+      data-np="बजार भाउ"
+    >
+      Mandi Prices
+    </button>
 
   </nav>
 
 
-  <!-- =========================================================
-       MAIN
-  ========================================================== -->
+  <!-- =====================================================
+       MAIN APPLICATION
+       ===================================================== -->
 
-  <main
-    id="main-content"
-    class="main-container"
-  >
+  <main>
 
 
-    <!-- =======================================================
+    <!-- ===================================================
          AI ADVISOR
-    ======================================================== -->
+         =================================================== -->
 
     <section
       id="tab-chat"
       class="tab-panel active"
-      role="tabpanel"
-      aria-labelledby="chat-tab"
     >
 
-      <div class="page-header">
+      <!-- HERO INTRO -->
 
-        <div>
+      <div class="advisor-hero">
 
-          <span
-            class="eyebrow"
-            data-en="AI-powered agriculture support"
-            data-np="AI आधारित कृषि सहयोग"
-          >
-            AI-powered agriculture support
-          </span>
+        <div class="advisor-hero-content">
+
+          <div class="eyebrow">
+
+            <span class="status-dot"></span>
+
+            <span
+              data-en="AI AGRICULTURAL ADVISOR"
+              data-np="AI कृषि सल्लाहकार"
+            >
+              AI AGRICULTURAL ADVISOR
+            </span>
+
+          </div>
+
 
           <h1
-            data-en="Ask Sarathi."
-            data-np="सारथीलाई सोध्नुहोस्।"
+            data-en="Practical advice for better farming decisions."
+            data-np="राम्रो कृषि निर्णयका लागि व्यवहारिक सल्लाह।"
           >
-            Ask Sarathi.
+            Practical advice for better farming decisions.
           </h1>
 
+
           <p
-            class="section-lede"
-            data-en="Get practical guidance on crops, pests, soil, farming practices, loans and agricultural subsidies."
-            data-np="बाली, कीरा, माटो, कृषि प्रविधि, कर्जा तथा कृषि अनुदानबारे व्यवहारिक जानकारी प्राप्त गर्नुहोस्।"
+            data-en="Ask about crops, pests, soil, farm management, loans or agricultural support. Krishak Sarathi helps you find clear, practical information in one place."
+            data-np="बाली, कीरा, माटो, कृषि व्यवस्थापन, कर्जा वा कृषि सहयोगबारे सोध्नुहोस्। कृषक सारथीले आवश्यक जानकारी सरल र व्यवहारिक रूपमा एकै ठाउँमा उपलब्ध गराउँछ।"
           >
-            Get practical guidance on crops, pests, soil, farming practices,
-            loans and agricultural subsidies.
+            Ask about crops, pests, soil, farm management, loans or agricultural support. Krishak Sarathi helps you find clear, practical information in one place.
           </p>
 
-        </div>
 
-        <div class="trust-badge">
+          <div class="hero-highlights">
 
-          <span class="trust-icon">✓</span>
+            <div class="hero-highlight">
 
-          <span
-            data-en="Farmer-focused guidance"
-            data-np="किसान केन्द्रित जानकारी"
-          >
-            Farmer-focused guidance
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- AI capabilities -->
-
-      <div class="advisor-features">
-
-        <div class="feature-card">
-
-          <span class="feature-icon">🌱</span>
-
-          <div>
-            <strong
-              data-en="Crop advice"
-              data-np="बाली सल्लाह"
-            >
-              Crop advice
-            </strong>
-
-            <span
-              data-en="Crops, pests, diseases & soil"
-              data-np="बाली, कीरा, रोग तथा माटो"
-            >
-              Crops, pests, diseases & soil
-            </span>
-          </div>
-
-        </div>
-
-
-        <div class="feature-card">
-
-          <span class="feature-icon">💰</span>
-
-          <div>
-            <strong
-              data-en="Finance guidance"
-              data-np="वित्तीय मार्गदर्शन"
-            >
-              Finance guidance
-            </strong>
-
-            <span
-              data-en="Loans, subsidies & requirements"
-              data-np="कर्जा, अनुदान तथा आवश्यकताहरू"
-            >
-              Loans, subsidies & requirements
-            </span>
-          </div>
-
-        </div>
-
-
-        <div class="feature-card">
-
-          <span class="feature-icon">📍</span>
-
-          <div>
-            <strong
-              data-en="Local context"
-              data-np="स्थानीय सन्दर्भ"
-            >
-              Local context
-            </strong>
-
-            <span
-              data-en="Practical information for Nepal"
-              data-np="नेपालका लागि व्यवहारिक जानकारी"
-            >
-              Practical information for Nepal
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- Chat -->
-
-      <div class="advisor-card">
-
-        <div class="advisor-card-header">
-
-          <div class="advisor-identity">
-
-            <div class="advisor-avatar">
-              कृ
-            </div>
-
-            <div>
-
-              <strong>Krishak Sarathi</strong>
+              <span class="highlight-icon">
+                🌱
+              </span>
 
               <span
-                data-en="AI Agriculture Advisor"
-                data-np="AI कृषि सल्लाहकार"
+                data-en="Crop guidance"
+                data-np="बाली सम्बन्धी सल्लाह"
               >
-                AI Agriculture Advisor
+                Crop guidance
+              </span>
+
+            </div>
+
+
+            <div class="hero-highlight">
+
+              <span class="highlight-icon">
+                💰
+              </span>
+
+              <span
+                data-en="Loan &amp; subsidy support"
+                data-np="कर्जा तथा अनुदान सहयोग"
+              >
+                Loan &amp; subsidy support
+              </span>
+
+            </div>
+
+
+            <div class="hero-highlight">
+
+              <span class="highlight-icon">
+                ☁
+              </span>
+
+              <span
+                data-en="Weather information"
+                data-np="मौसम जानकारी"
+              >
+                Weather information
               </span>
 
             </div>
 
           </div>
 
-
-          <span class="online-status">
-
-            <span class="status-dot"></span>
-
-            <span
-              data-en="Ready to help"
-              data-np="सहयोगका लागि तयार"
-            >
-              Ready to help
-            </span>
-
-          </span>
-
         </div>
 
 
         <div
-          id="chat-window"
-          class="chat-window"
-          aria-live="polite"
-          aria-label="Conversation with Krishak Sarathi"
+          class="advisor-hero-art"
+          aria-hidden="true"
         >
 
-          <div
-            class="msg bot"
-            data-en="Namaste! I can help with crops, pests, soil, farming practices, loans and subsidies. What would you like to know?"
-            data-np="नमस्ते! म बाली, कीरा, माटो, कृषि प्रविधि, कर्जा तथा अनुदानबारे जानकारी दिन सक्छु। तपाईं के जान्न चाहनुहुन्छ?"
-          >
-            Namaste! I can help with crops, pests, soil, farming practices,
-            loans and subsidies. What would you like to know?
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
+
+          <div class="hero-leaf leaf-one">
+            🌿
+          </div>
+
+          <div class="hero-leaf leaf-two">
+            🌱
+          </div>
+
+          <div class="hero-sun">
+            ☀
           </div>
 
         </div>
 
+      </div>
 
-        <!-- Suggested questions -->
+
+      <!-- CHAT INTRO -->
+
+      <div class="section-heading">
+
+        <div>
+
+          <span
+            class="section-kicker"
+            data-en="ASK SARATHI"
+            data-np="सारथीलाई सोध्नुहोस्"
+          >
+            ASK SARATHI
+          </span>
+
+          <h2
+            data-en="What would you like to know?"
+            data-np="तपाईं के जान्न चाहनुहुन्छ?"
+          >
+            What would you like to know?
+          </h2>
+
+        </div>
+
+        <div class="advisor-status">
+
+          <span class="status-dot"></span>
+
+          <span
+            data-en="Advisor ready"
+            data-np="सल्लाहकार तयार छ"
+          >
+            Advisor ready
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <p class="section-lede">
+
+        <span
+          data-en="Ask about crops, pests, soil, farm management, or a specific loan and subsidy scheme. Loan-related answers are grounded in the verified Loan &amp; Subsidy Guide."
+          data-np="बाली, कीरा, माटो, कृषि व्यवस्थापन वा कुनै विशेष कर्जा तथा अनुदान योजनाबारे सोध्नुहोस्। कर्जा सम्बन्धी जवाफ प्रमाणित कर्जा तथा अनुदान मार्गदर्शकमा आधारित हुन्छ।"
+        >
+          Ask about crops, pests, soil, farm management, or a specific loan and subsidy scheme. Loan-related answers are grounded in the verified Loan &amp; Subsidy Guide.
+        </span>
+
+      </p>
+
+
+      <!-- CHAT WINDOW -->
+
+      <div
+        id="chat-window"
+        class="chat-window"
+        aria-live="polite"
+      >
 
         <div
-          id="chat-quick-chips"
-          class="quick-chips"
-          aria-label="Suggested questions"
+          class="chat-welcome"
+          aria-hidden="true"
         >
-          <!-- populated by app.js -->
+
+          <div class="welcome-icon">
+            🌾
+          </div>
+
+          <span
+            data-en="Your farming questions start here"
+            data-np="तपाईंका कृषि प्रश्न यहाँबाट सुरु हुन्छन्"
+          >
+            Your farming questions start here
+          </span>
+
         </div>
 
 
-        <!-- Chat input -->
-
-        <form
-          id="chat-form"
-          class="chat-input-row"
+        <div
+          class="msg bot"
+          data-en="Namaste! Ask me about crops, pests, soil, farm management, or a loan/subsidy scheme."
+          data-np="नमस्ते! बाली, कीरा, माटो, कृषि व्यवस्थापन, वा कुनै कर्जा/अनुदान योजनाबारे सोध्नुहोस्।"
         >
+          Namaste! Ask me about crops, pests, soil, farm management, or a loan/subsidy scheme.
+        </div>
 
-          <button
-            type="button"
-            id="mic-btn"
-            class="icon-btn"
-            title="Speak"
-            aria-label="Voice input"
-          >
-            🎤
-          </button>
+      </div>
 
 
-          <input
-            type="text"
-            id="chat-input"
-            data-en-placeholder="Ask about your farm..."
-            data-np-placeholder="आफ्नो खेतीबारे सोध्नुहोस्..."
-            placeholder="Ask about your farm..."
-            autocomplete="off"
-            aria-label="Ask Krishak Sarathi"
-          />
+      <!-- QUICK QUESTIONS -->
+
+      <div class="quick-question-header">
+
+        <span
+          data-en="Try asking"
+          data-np="यसरी सोध्न सक्नुहुन्छ"
+        >
+          Try asking
+        </span>
+
+      </div>
 
 
-          <button
-            type="submit"
-            class="send-btn"
-            data-en="Send"
-            data-np="पठाउनुहोस्"
-          >
-            Send
-          </button>
-
-        </form>
+      <div
+        class="quick-chips"
+        id="chat-quick-chips"
+      >
+        <!-- populated by app.js -->
+      </div>
 
 
-        <p class="verification-note">
+      <!-- CHAT INPUT -->
 
-          <span aria-hidden="true">ⓘ</span>
+      <form
+        id="chat-form"
+        class="chat-input-row"
+      >
 
-          <span
-            data-en="For loans and subsidies, always confirm current rates, eligibility and deadlines with the listed office."
-            data-np="कर्जा तथा अनुदानका लागि हालको ब्याजदर, योग्यता र म्याद सम्बन्धित कार्यालयसँग पक्का गर्नुहोस्।"
-          >
-            For loans and subsidies, always confirm current rates,
-            eligibility and deadlines with the listed office.
-          </span>
+        <button
+          type="button"
+          id="mic-btn"
+          title="Speak"
+          aria-label="Voice input"
+        >
+          🎤
+        </button>
 
-        </p>
+
+        <input
+          type="text"
+          id="chat-input"
+          data-en-placeholder="Ask about your farm, crop, pest, soil, loan or subsidy..."
+          data-np-placeholder="आफ्नो बाली, कीरा, माटो, कर्जा वा अनुदानबारे सोध्नुहोस्..."
+          placeholder="Ask about your farm, crop, pest, soil, loan or subsidy..."
+          autocomplete="off"
+        />
+
+
+        <button
+          type="submit"
+          data-en="Send"
+          data-np="पठाउनुहोस्"
+        >
+          Send
+        </button>
+
+      </form>
+
+
+      <!-- DISCLAIMER -->
+
+      <div class="advisor-note">
+
+        <span class="note-icon">
+          ✓
+        </span>
+
+        <span
+          data-en="For scheme rates, deadlines and eligibility, always confirm the latest information with the listed office."
+          data-np="योजनाको ब्याजदर, म्याद र योग्यताका लागि सूचीबद्ध कार्यालयसँग पछिल्लो जानकारी पक्का गर्नुहोस्।"
+        >
+          For scheme rates, deadlines and eligibility, always confirm the latest information with the listed office.
+        </span>
 
       </div>
 
     </section>
 
 
-    <!-- =======================================================
+
+    <!-- ===================================================
          LOAN & SUBSIDY GUIDE
-    ======================================================== -->
+         =================================================== -->
 
     <section
       id="tab-loans"
       class="tab-panel"
-      role="tabpanel"
     >
 
-      <div class="page-header">
+      <div class="page-hero compact-hero">
 
         <div>
 
           <span
-            class="eyebrow"
-            data-en="Agricultural finance"
+            class="section-kicker"
+            data-en="AGRICULTURAL FINANCE"
             data-np="कृषि वित्त"
           >
-            Agricultural finance
+            AGRICULTURAL FINANCE
           </span>
 
           <h1
-            data-en="Loan & Subsidy Guide"
+            data-en="Loan &amp; Subsidy Guide"
             data-np="कर्जा तथा अनुदान मार्गदर्शक"
           >
-            Loan & Subsidy Guide
+            Loan &amp; Subsidy Guide
           </h1>
 
           <p
-            class="section-lede"
-            data-en="Explore agricultural finance schemes in plain language — including eligibility, documents, application steps and where to verify current information."
-            data-np="योग्यता, आवश्यक कागजात, आवेदन प्रक्रिया तथा हालको जानकारी कहाँ पक्का गर्ने भन्ने विषयमा कृषि वित्तीय योजनाहरू सरल भाषामा हेर्नुहोस्।"
+            data-en="Explore agricultural finance and support schemes, understand the required documents and follow the application process."
+            data-np="कृषि कर्जा तथा सहयोग योजनाहरू हेर्नुहोस्, आवश्यक कागजात बुझ्नुहोस् र आवेदन प्रक्रिया पालना गर्नुहोस्।"
           >
-            Explore agricultural finance schemes in plain language —
-            including eligibility, documents, application steps and where
-            to verify current information.
+            Explore agricultural finance and support schemes, understand the required documents and follow the application process.
           </p>
 
+        </div>
+
+
+        <div
+          class="page-hero-icon"
+          aria-hidden="true"
+        >
+          💰
         </div>
 
       </div>
 
 
-      <!-- Search -->
+      <div class="section-lede">
+
+        <span
+          data-en="A curated, plain-language guide to agriculture loans and subsidy schemes — including documents, steps and where to confirm current terms."
+          data-np="कृषि कर्जा तथा अनुदान योजनाहरूको सरल मार्गदर्शक — आवश्यक कागजात, प्रक्रिया र हालको सर्त कहाँ पक्का गर्ने भन्ने जानकारीसहित।"
+        >
+          A curated, plain-language guide to agriculture loans and subsidy schemes — including documents, steps and where to confirm current terms.
+        </span>
+
+      </div>
+
+
+      <!-- SEARCH -->
 
       <div class="loan-toolbar">
 
         <div class="search-wrapper">
 
-          <span
-            class="search-icon"
-            aria-hidden="true"
-          >
-            ⌕
+          <span class="search-icon">
+            🔎
           </span>
 
           <input
-            type="search"
+            type="text"
             id="scheme-search"
             class="scheme-search"
             data-en-placeholder="Search schemes — e.g. dairy, youth, insurance..."
             data-np-placeholder="योजना खोज्नुहोस् — जस्तै डेरी, युवा, बीमा..."
             placeholder="Search schemes — e.g. dairy, youth, insurance..."
-            autocomplete="off"
           />
 
         </div>
@@ -591,7 +581,6 @@
         <div
           class="tag-chips"
           id="tag-chips"
-          aria-label="Scheme categories"
         >
           <!-- populated by app.js -->
         </div>
@@ -599,26 +588,35 @@
       </div>
 
 
-      <!-- Guide layout -->
+      <!-- SCHEMES -->
 
       <div class="loan-layout">
 
-        <aside
-          class="schemes-sidebar"
-          aria-label="Available loan and subsidy schemes"
-        >
+        <aside class="scheme-sidebar">
 
-          <div class="sidebar-heading">
+          <div class="list-header">
+
+            <div>
+
+              <span
+                class="section-kicker"
+                data-en="AVAILABLE PROGRAMS"
+                data-np="उपलब्ध कार्यक्रम"
+              >
+                AVAILABLE PROGRAMS
+              </span>
+
+              <h3
+                data-en="Schemes"
+                data-np="योजनाहरू"
+              >
+                Schemes
+              </h3>
+
+            </div>
 
             <span
-              data-en="Available schemes"
-              data-np="उपलब्ध योजनाहरू"
-            >
-              Available schemes
-            </span>
-
-            <span
-              class="scheme-count"
+              class="list-count"
               id="scheme-count"
             >
               —
@@ -637,32 +635,31 @@
         </aside>
 
 
+        <!-- DETAIL -->
+
         <article
           id="scheme-detail"
           class="scheme-detail"
-          aria-live="polite"
         >
 
           <div class="scheme-detail-empty">
 
-            <div class="empty-state-icon">
-              ▣
+            <div class="empty-icon">
+              📋
             </div>
 
-            <h2
+            <h3
               data-en="Select a scheme"
-              data-np="योजना छान्नुहोस्"
+              data-np="कुनै योजना छान्नुहोस्"
             >
               Select a scheme
-            </h2>
+            </h3>
 
             <p
-              data-en="Choose a loan or subsidy scheme from the list to view eligibility, required documents, application steps and verification information."
-              data-np="योग्यता, आवश्यक कागजात, आवेदन प्रक्रिया तथा प्रमाणीकरण जानकारी हेर्न सूचीबाट कर्जा वा अनुदान योजना छान्नुहोस्।"
+              data-en="Choose a scheme from the list to see eligibility, required documents, application steps and where to verify the current terms."
+              data-np="सूचीबाट योजना छान्नुहोस् र योग्यता, आवश्यक कागजात, आवेदन प्रक्रिया तथा हालको सर्त कहाँ पक्का गर्ने भन्ने जानकारी हेर्नुहोस्।"
             >
-              Choose a loan or subsidy scheme from the list to view
-              eligibility, required documents, application steps and
-              verification information.
+              Choose a scheme from the list to see eligibility, required documents, application steps and where to verify the current terms.
             </p>
 
           </div>
@@ -671,58 +668,29 @@
 
       </div>
 
-
-      <!-- Verification notice -->
-
-      <div class="important-notice">
-
-        <span class="notice-icon">!</span>
-
-        <div>
-
-          <strong
-            data-en="Important"
-            data-np="महत्त्वपूर्ण"
-          >
-            Important
-          </strong>
-
-          <p
-            data-en="Loan rates, subsidy amounts, eligibility criteria and deadlines can change. Use the listed authority or office to confirm current terms before applying."
-            data-np="कर्जा ब्याजदर, अनुदान रकम, योग्यता तथा म्याद परिवर्तन हुन सक्छन्। आवेदन दिनुअघि सूचीबद्ध सम्बन्धित निकाय वा कार्यालयसँग हालको सर्त पक्का गर्नुहोस्।"
-          >
-            Loan rates, subsidy amounts, eligibility criteria and deadlines
-            can change. Use the listed authority or office to confirm
-            current terms before applying.
-          </p>
-
-        </div>
-
-      </div>
-
     </section>
 
 
-    <!-- =======================================================
+
+    <!-- ===================================================
          LOAN CALCULATOR
-    ======================================================== -->
+         =================================================== -->
 
     <section
       id="tab-calculator"
       class="tab-panel"
-      role="tabpanel"
     >
 
-      <div class="page-header">
+      <div class="page-hero compact-hero">
 
         <div>
 
           <span
-            class="eyebrow"
-            data-en="Financial planning"
+            class="section-kicker"
+            data-en="FINANCIAL PLANNING"
             data-np="वित्तीय योजना"
           >
-            Financial planning
+            FINANCIAL PLANNING
           </span>
 
           <h1
@@ -733,266 +701,277 @@
           </h1>
 
           <p
-            class="section-lede"
-            data-en="Estimate your monthly loan payment using the amount, interest rate and term quoted by your bank or cooperative."
-            data-np="तपाईंको बैंक वा सहकारीले दिएको कर्जा रकम, ब्याजदर र अवधिका आधारमा मासिक किस्ताको अनुमान गर्नुहोस्।"
+            data-en="Estimate your monthly loan payment using the interest rate quoted by your bank or cooperative."
+            data-np="तपाईंको बैंक वा सहकारीले दिएको ब्याजदर प्रयोग गरेर मासिक कर्जा किस्ता अनुमान गर्नुहोस्।"
           >
-            Estimate your monthly loan payment using the amount,
-            interest rate and term quoted by your bank or cooperative.
+            Estimate your monthly loan payment using the interest rate quoted by your bank or cooperative.
           </p>
 
+        </div>
+
+
+        <div
+          class="page-hero-icon"
+          aria-hidden="true"
+        >
+          🧮
         </div>
 
       </div>
 
 
-      <div class="calculator-layout">
+      <p class="section-lede">
 
-        <form
-          id="emi-form"
-          class="emi-form calculator-card"
+        <span
+          data-en="Enter your loan amount, annual interest rate and repayment period. This calculator provides an estimate and does not assume any specific scheme's rate."
+          data-np="कर्जा रकम, वार्षिक ब्याजदर र भुक्तानी अवधि लेख्नुहोस्। यो क्यालकुलेटरले अनुमान मात्र दिन्छ र कुनै निश्चित योजनाको ब्याजदर मान्दैन।"
         >
+          Enter your loan amount, annual interest rate and repayment period. This calculator provides an estimate and does not assume any specific scheme's rate.
+        </span>
 
-          <div class="form-heading">
+      </p>
 
-            <h2
-              data-en="Enter loan details"
-              data-np="कर्जाको विवरण भर्नुहोस्"
+
+      <!-- CALCULATOR -->
+
+      <form
+        id="emi-form"
+        class="emi-form"
+      >
+
+        <label>
+
+          <span
+            data-en="Loan amount"
+            data-np="कर्जा रकम"
+          >
+            Loan amount
+          </span>
+
+          <div class="input-with-prefix">
+
+            <span>रु.</span>
+
+            <input
+              type="number"
+              id="emi-principal"
+              min="1000"
+              step="1000"
+              value="200000"
+              required
+            />
+
+          </div>
+
+        </label>
+
+
+        <label>
+
+          <span
+            data-en="Annual interest rate"
+            data-np="वार्षिक ब्याजदर"
+          >
+            Annual interest rate
+          </span>
+
+          <div class="input-with-suffix">
+
+            <input
+              type="number"
+              id="emi-rate"
+              min="0"
+              step="0.1"
+              value="8"
+              required
+            />
+
+            <span>%</span>
+
+          </div>
+
+        </label>
+
+
+        <label>
+
+          <span
+            data-en="Loan term"
+            data-np="कर्जा अवधि"
+          >
+            Loan term
+          </span>
+
+          <div class="input-with-suffix">
+
+            <input
+              type="number"
+              id="emi-months"
+              min="1"
+              step="1"
+              value="36"
+              required
+            />
+
+            <span
+              data-en="months"
+              data-np="महिना"
             >
-              Enter loan details
-            </h2>
+              months
+            </span>
 
-            <p
-              data-en="Use the rate provided by your lender."
-              data-np="ऋणदाताले दिएको ब्याजदर प्रयोग गर्नुहोस्।"
+          </div>
+
+        </label>
+
+
+        <button
+          type="submit"
+          data-en="Calculate payment"
+          data-np="किस्त गणना गर्नुहोस्"
+        >
+          Calculate payment
+        </button>
+
+      </form>
+
+
+      <!-- RESULT -->
+
+      <div
+        id="emi-result"
+        class="result-box emi-result"
+        hidden
+      >
+
+        <div class="result-top">
+
+          <div>
+
+            <span
+              class="result-kicker"
+              data-en="ESTIMATED MONTHLY PAYMENT"
+              data-np="अनुमानित मासिक किस्ता"
             >
-              Use the rate provided by your lender.
-            </p>
+              ESTIMATED MONTHLY PAYMENT
+            </span>
+
+            <div
+              class="emi-value"
+              id="emi-monthly"
+            >
+              —
+            </div>
 
           </div>
 
 
-          <label>
-
-            <span
-              data-en="Loan amount"
-              data-np="कर्जा रकम"
-            >
-              Loan amount
-            </span>
-
-            <div class="input-with-unit">
-
-              <span>NPR</span>
-
-              <input
-                type="number"
-                id="emi-principal"
-                min="1000"
-                step="1000"
-                value="200000"
-                required
-              />
-
-            </div>
-
-          </label>
-
-
-          <label>
-
-            <span
-              data-en="Annual interest rate"
-              data-np="वार्षिक ब्याजदर"
-            >
-              Annual interest rate
-            </span>
-
-            <div class="input-with-unit">
-
-              <input
-                type="number"
-                id="emi-rate"
-                min="0"
-                step="0.1"
-                value="8"
-                required
-              />
-
-              <span>%</span>
-
-            </div>
-
-          </label>
-
-
-          <label>
-
-            <span
-              data-en="Loan term"
-              data-np="कर्जा अवधि"
-            >
-              Loan term
-            </span>
-
-            <div class="input-with-unit">
-
-              <input
-                type="number"
-                id="emi-months"
-                min="1"
-                step="1"
-                value="36"
-                required
-              />
-
-              <span
-                data-en="months"
-                data-np="महिना"
-              >
-                months
-              </span>
-
-            </div>
-
-          </label>
-
-
-          <button
-            type="submit"
-            class="primary-action"
-            data-en="Calculate payment"
-            data-np="किस्त गणना गर्नुहोस्"
+          <div
+            class="result-symbol"
+            aria-hidden="true"
           >
-            Calculate payment
-          </button>
+            💳
+          </div>
 
-        </form>
+        </div>
 
 
-        <!-- Result -->
+        <div class="emi-breakdown">
 
-        <div
-          id="emi-result"
-          class="result-box emi-result"
-          hidden
-        >
-
-          <div class="result-header">
+          <div>
 
             <span
-              class="result-kicker"
-              data-en="Estimated monthly payment"
-              data-np="अनुमानित मासिक किस्ता"
+              data-en="Total repayment"
+              data-np="कुल भुक्तानी"
             >
-              Estimated monthly payment
+              Total repayment
             </span>
 
-            <strong
-              id="emi-monthly"
-              class="emi-value"
-            >
+            <strong id="emi-total">
               —
             </strong>
 
           </div>
 
 
-          <div class="emi-breakdown">
+          <div>
 
-            <div>
+            <span
+              data-en="Total interest"
+              data-np="कुल ब्याज"
+            >
+              Total interest
+            </span>
 
-              <span
-                data-en="Total repayment"
-                data-np="कुल भुक्तानी"
-              >
-                Total repayment
-              </span>
-
-              <strong id="emi-total">
-                —
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <span
-                data-en="Total interest"
-                data-np="कुल ब्याज"
-              >
-                Total interest
-              </span>
-
-              <strong id="emi-interest">
-                —
-              </strong>
-
-            </div>
+            <strong id="emi-interest">
+              —
+            </strong>
 
           </div>
 
-
-          <p class="emi-note">
-
-            <span aria-hidden="true">ⓘ</span>
-
-            <span
-              data-en="Estimate only. Actual repayment may differ because of fees, insurance, compounding methods or lender-specific terms."
-              data-np="यो अनुमान मात्र हो। शुल्क, बीमा, गणना विधि वा ऋणदाताका अन्य सर्तका कारण वास्तविक भुक्तानी फरक हुन सक्छ।"
-            >
-              Estimate only. Actual repayment may differ because of fees,
-              insurance, compounding methods or lender-specific terms.
-            </span>
-
-          </p>
-
         </div>
+
+
+        <p class="emi-note">
+
+          <span
+            data-en="Estimate only. The actual repayment schedule may include fees or use a different calculation method."
+            data-np="यो अनुमान मात्र हो। वास्तविक भुक्तानी तालिकामा शुल्क वा फरक गणना विधि हुन सक्छ।"
+          >
+            Estimate only. The actual repayment schedule may include fees or use a different calculation method.
+          </span>
+
+        </p>
 
       </div>
 
     </section>
 
 
-    <!-- =======================================================
+
+    <!-- ===================================================
          WEATHER
-    ======================================================== -->
+         =================================================== -->
 
     <section
       id="tab-weather"
       class="tab-panel"
-      role="tabpanel"
     >
 
-      <div class="page-header">
+      <div class="page-hero compact-hero">
 
         <div>
 
           <span
-            class="eyebrow"
-            data-en="Weather for farming"
-            data-np="कृषिका लागि मौसम"
+            class="section-kicker"
+            data-en="FARM WEATHER"
+            data-np="कृषि मौसम"
           >
-            Weather for farming
+            FARM WEATHER
           </span>
 
           <h1
-            data-en="Local Weather"
-            data-np="स्थानीय मौसम"
+            data-en="Weather for your farm"
+            data-np="तपाईंको खेतको मौसम"
           >
-            Local Weather
+            Weather for your farm
           </h1>
 
           <p
-            class="section-lede"
-            data-en="Check weather conditions for your farming location and use the information to plan field activities."
-            data-np="आफ्नो खेती स्थानको मौसम हेर्नुहोस् र खेतबारीका कामको योजना बनाउन जानकारी प्रयोग गर्नुहोस्।"
+            data-en="Check current weather information for your farming location."
+            data-np="तपाईंको कृषि क्षेत्रको हालको मौसम जानकारी हेर्नुहोस्।"
           >
-            Check weather conditions for your farming location and use
-            the information to plan field activities.
+            Check current weather information for your farming location.
           </p>
 
+        </div>
+
+
+        <div
+          class="page-hero-icon"
+          aria-hidden="true"
+        >
+          ☁️
         </div>
 
       </div>
@@ -1000,16 +979,13 @@
 
       <form
         id="weather-form"
-        class="inline-form weather-search-card"
+        class="inline-form"
       >
 
         <div class="search-wrapper">
 
-          <span
-            class="search-icon"
-            aria-hidden="true"
-          >
-            ⌕
+          <span class="search-icon">
+            📍
           </span>
 
           <input
@@ -1018,7 +994,6 @@
             data-en-placeholder="Enter a place, e.g. Kavrepalanchowk"
             data-np-placeholder="ठाउँ लेख्नुहोस्, जस्तै काभ्रेपलाञ्चोक"
             placeholder="Enter a place, e.g. Kavrepalanchowk"
-            autocomplete="off"
           />
 
         </div>
@@ -1026,7 +1001,6 @@
 
         <button
           type="submit"
-          class="primary-action"
           data-en="Check weather"
           data-np="मौसम हेर्नुहोस्"
         >
@@ -1037,7 +1011,6 @@
         <button
           type="button"
           id="geo-btn"
-          class="secondary-action"
           data-en="Use my location"
           data-np="मेरो स्थान प्रयोग गर्नुहोस्"
         >
@@ -1050,63 +1023,108 @@
       <div
         id="weather-result"
         class="result-box weather-result"
-        aria-live="polite"
       >
+
         <div class="empty-state">
 
-          <div class="empty-state-icon">
-            ☼
+          <div class="empty-icon">
+            ☀️
           </div>
 
-          <p
-            data-en="Enter a location to see weather information."
-            data-np="मौसमको जानकारी हेर्न स्थान लेख्नुहोस्।"
+          <h3
+            data-en="Check your local weather"
+            data-np="आफ्नो स्थानीय मौसम हेर्नुहोस्"
           >
-            Enter a location to see weather information.
+            Check your local weather
+          </h3>
+
+          <p
+            data-en="Enter your location above or use your device location."
+            data-np="माथि आफ्नो स्थान लेख्नुहोस् वा आफ्नो उपकरणको स्थान प्रयोग गर्नुहोस्।"
+          >
+            Enter your location above or use your device location.
           </p>
 
         </div>
+
       </div>
 
     </section>
 
 
-    <!-- =======================================================
+
+    <!-- ===================================================
          MANDI PRICES
-    ======================================================== -->
+         =================================================== -->
 
     <section
       id="tab-mandi"
       class="tab-panel"
-      role="tabpanel"
     >
 
-      <div class="page-header">
+      <div class="page-hero compact-hero">
 
         <div>
 
           <span
-            class="eyebrow"
-            data-en="Market information"
+            class="section-kicker"
+            data-en="MARKET INFORMATION"
             data-np="बजार जानकारी"
           >
-            Market information
+            MARKET INFORMATION
           </span>
 
           <h1
-            data-en="Mandi Prices"
-            data-np="बजार भाउ"
+            data-en="Today's Mandi Prices"
+            data-np="आजको बजार भाउ"
           >
-            Mandi Prices
+            Today's Mandi Prices
           </h1>
 
           <p
-            class="section-lede"
-            data-en="View available market price information and use it as a reference when planning sales."
-            data-np="उपलब्ध बजार मूल्य जानकारी हेर्नुहोस् र बिक्री योजना बनाउँदा यसलाई सन्दर्भका रूपमा प्रयोग गर्नुहोस्।"
+            data-en="Stay informed about agricultural market prices and make better selling decisions."
+            data-np="कृषि बजारको मूल्य जानकारी लिएर आफ्नो उत्पादन बिक्रीसम्बन्धी राम्रो निर्णय गर्नुहोस्।"
           >
-            View available market price information and use it as a
-            reference when planning sales.
+            Stay informed about agricultural market prices and make better selling decisions.
+          </p>
+
+        </div>
+
+
+        <div
+          class="page-hero-icon"
+          aria-hidden="true"
+        >
+          🧺
+        </div>
+
+      </div>
+
+
+      <div class="market-action">
+
+        <div>
+
+          <span
+            class="section-kicker"
+            data-en="LATEST UPDATE"
+            data-np="पछिल्लो अपडेट"
+          >
+            LATEST UPDATE
+          </span>
+
+          <h3
+            data-en="Agricultural market prices"
+            data-np="कृषि बजार मूल्य"
+          >
+            Agricultural market prices
+          </h3>
+
+          <p
+            data-en="Refresh to check today's available price information."
+            data-np="आजको उपलब्ध मूल्य जानकारी हेर्न ताजा गर्नुहोस्।"
+          >
+            Refresh to check today's available price information.
           </p>
 
         </div>
@@ -1114,13 +1132,11 @@
 
         <button
           id="mandi-refresh"
-          class="secondary-action"
           type="button"
           data-en="Refresh today's prices"
           data-np="आजको भाउ ताजा गर्नुहोस्"
         >
-          ↻
-          <span>Refresh today's prices</span>
+          Refresh today's prices
         </button>
 
       </div>
@@ -1129,112 +1145,81 @@
       <div
         id="mandi-result"
         class="result-box mandi-result"
-        aria-live="polite"
       >
 
         <div class="empty-state">
 
-          <div class="empty-state-icon">
-            ↗
+          <div class="empty-icon">
+            🧺
           </div>
 
-          <p
-            data-en="Market prices will appear here."
-            data-np="बजार भाउ यहाँ देखिनेछ।"
+          <h3
+            data-en="Market prices will appear here"
+            data-np="बजारको भाउ यहाँ देखिनेछ"
           >
-            Market prices will appear here.
+            Market prices will appear here
+          </h3>
+
+          <p
+            data-en="Refresh today's prices to retrieve the latest available market information."
+            data-np="पछिल्लो उपलब्ध बजार जानकारी प्राप्त गर्न आजको भाउ ताजा गर्नुहोस्।"
+          >
+            Refresh today's prices to retrieve the latest available market information.
           </p>
 
         </div>
 
       </div>
 
-
-      <p class="data-note">
-
-        <span aria-hidden="true">ⓘ</span>
-
-        <span
-          data-en="Market prices may vary by market, quality, quantity and time. Confirm the latest local price before making a sale decision."
-          data-np="बजार, गुणस्तर, परिमाण तथा समयअनुसार मूल्य फरक हुन सक्छ। बिक्रीको निर्णय गर्नुअघि स्थानीय बजारको पछिल्लो भाउ पक्का गर्नुहोस्।"
-        >
-          Market prices may vary by market, quality, quantity and time.
-          Confirm the latest local price before making a sale decision.
-        </span>
-
-      </p>
-
     </section>
 
   </main>
 
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
 
-  <footer class="site-footer">
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
 
     <div class="footer-inner">
 
       <div class="footer-brand">
 
-        <div class="brand">
+        <span
+          class="footer-mark"
+          aria-hidden="true"
+        >
+          कृ
+        </span>
 
-          <span class="brand-mark">
-            कृ
-          </span>
+        <div>
 
-          <span class="brand-name">
+          <strong
+            data-en="Krishak Sarathi"
+            data-np="कृषक सारथी"
+          >
             Krishak Sarathi
+          </strong>
+
+          <span
+            data-en="Digital agricultural advisory platform"
+            data-np="डिजिटल कृषि सल्लाहकार प्लेटफर्म"
+          >
+            Digital agricultural advisory platform
           </span>
 
         </div>
 
-        <p
-          data-en="Practical digital support for Nepal's farmers."
-          data-np="नेपालका किसानका लागि व्यवहारिक डिजिटल सहयोग।"
-        >
-          Practical digital support for Nepal's farmers.
-        </p>
-
       </div>
 
-
-      <div class="footer-trust">
-
-        <strong
-          data-en="Information you can act on."
-          data-np="विश्वसनीय र व्यवहारिक जानकारी।"
-        >
-          Information you can act on.
-        </strong>
-
-        <p
-          data-en="Use official sources to confirm changing financial, market and government information."
-          data-np="परिवर्तन हुन सक्ने वित्तीय, बजार तथा सरकारी जानकारी आधिकारिक स्रोतबाट पक्का गर्नुहोस्।"
-        >
-          Use official sources to confirm changing financial,
-          market and government information.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-      <p>
-        © <span id="current-year"></span>
-        Krishak Sarathi
-      </p>
 
       <p
-        data-en="AI-powered farm & loan advisor"
-        data-np="AI संचालित कृषि तथा कर्जा सल्लाहकार"
+        data-en="AI-powered farm &amp; loan advisor. Verify all scheme figures, deadlines and eligibility with the relevant office before relying on them."
+        data-np="AI संचालित कृषि तथा कर्जा सल्लाहकार। योजनाका सबै अंक, म्याद र योग्यता सम्बन्धित कार्यालयसँग पक्का गरेर मात्र भर पर्नुहोस्।"
       >
-        AI-powered farm & loan advisor
+        AI-powered farm &amp; loan advisor. Verify all scheme figures, deadlines and eligibility with the relevant office before relying on them.
       </p>
 
     </div>
@@ -1242,28 +1227,13 @@
   </footer>
 
 
-  <!-- =========================================================
-       APPLICATION SCRIPT
-  ========================================================== -->
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script src="app.js"></script>
-
-
-  <!-- Small progressive-enhancement helper -->
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-      const year = document.getElementById("current-year");
-
-      if (year) {
-        year.textContent = new Date().getFullYear();
-      }
-
-    });
-  </script>
 
 </body>
 
 </html>
-```
